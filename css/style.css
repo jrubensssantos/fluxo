@@ -1,0 +1,11 @@
+/*mensagem*/
+#mensagem {
+	background: #eff4d4;
+	border: 1px solid #8fad3d;
+	color: #596c26;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+}
