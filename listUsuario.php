@@ -31,7 +31,7 @@
 						<?php						
 						$strSQL = "SELECT idUsuario, NmUsuario, DsEmail, DsSenha FROM tsUsuario WHERE 1=1";
 								//if de uma linha que trabalha os dois escopos true ou false de forma simplificada.		
-						$strSQL .= (strlen($arrDados["fltEmail"]) <= 0)?"" :" AND DsEmail LIKE '%".mysql_real_escape_string($_POST["fltEmail"])."%'";				
+						$strSQL .= (strlen($arrDados["fltEmail"]) <= 0)?"" :" AND DsEmail LIKE '%".mysql_real_escape_string($arrDados["fltEmail"])."%'";				
 						$objRs = mysql_query($strSQL);
 						
 						while ($objRow = mysql_fetch_array($objRs))
