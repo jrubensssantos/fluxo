@@ -8,10 +8,11 @@
 		$arrDados["NmCategoria"] = mysql_real_escape_string($arrDados["NmCategoria"]);
 		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
 		
-		$strSQL = 	"	UPDATE fluxo.teCategoria
+		$strSQL = 	"	UPDATE 
+								fluxo.teCategoria
 						SET
-							NmCategoria = '".$arrDados['NmCategoria']."'						
-							,FgStatus = '".$arrDados["FgStatus"] === "on" ? "A" : "B"."'									
+								 NmCategoria = '".$arrDados['NmCategoria']."'						
+								,FgStatus = '".$arrDados["FgStatus"] == "on" ? "A" : "B"."'									
 						WHERE
 							idCategoria = '".$arrDados['idCategoria']." 
 					";
@@ -61,16 +62,25 @@
 			$strMsg = "O campo categoria tem que ter mais de 3 caracteres";
 			exit();
 		}
+		if(strlen($arrDados["FgStatus"]) == -1 )
+		{
+			//var_dump($arrDados);
+			header("Location: cadCategoria.php");
+			$strMsg = "Marque uma opção do para o status";
+			exit();
+		}
 	
 		$arrDados["NmCategoria"] = mysql_real_escape_string($arrDados["NmCategoria"]);
 		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
-		$strSQL = "INSERT INTO 	fluxo.teCategoria 
-								(NmCategoria, FgStatus) 
-					VALUES 
-								(
-									'{$arrDados["NmCategoria"]}'
-									, '{$arrDados["FgStatus"]}'
-								)";			
+		$strSQL = 	"		
+						INSERT INTO 
+							tecategoria(NmCategoria, FgStatus) 
+						VALUES 
+						(
+							'{$arrDados["NmCategoria"]}'
+							,'{$arrDados["FgStatus"]}'	
+						)
+	  				";	
 						
 		if(mysql_query($strSQL))
 		{ 

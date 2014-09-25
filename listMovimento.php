@@ -1,6 +1,6 @@
 <?php 
 	require_once("topo.php");
-	$arrDados = $_POST; 
+	$arrDados = $_REQUEST; 
 ?>
 <div id="page-wrapper">
     <div class="row">
@@ -66,8 +66,8 @@
 								<a href='editUsuario.php' title='Editar'>
 									<img src='images/edit.png' alt='Editar' />
 								</a>
-								<a href='delUsuario.php' title='Excluir'>
-									<img src='images/delete.png' alt='Excluir' />
+								<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idMovimento']});' data-toggle='modal' data-target='#del'>
+									<i class='fa fa-trash-o'></i>
 								</a>
 							</td>";
 						echo "</tr>";
@@ -75,4 +75,22 @@
 						
 						?>
 					</table>
+					<div class="panel pull-right">        
+						<a href="cadMovimento.php"><button class="btn btn-primary btn-sm" id="btnNovo" name="btnNovo" data-toggle="modal" data-target="#myModal" class="pull-right">
+ 							<span class="fa fa-plus"></span> &nbsp; Novo Movimento  
+						</button></a>
+					</div>
+					<script language="javascript">
+						function excluir(pstrId)
+						{
+							if(!window.confirm("Deseja realmente excluir o registo  " + pstrId + "?"))
+							{
+								return false; 
+							}
+							else
+							{
+								window.location="movimentos.php?idMovimentos=" + pstrId + "&acao=D";
+							};
+						};
+					</script>
 					<?php require_once("rodape.php");

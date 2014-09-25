@@ -62,14 +62,14 @@
 			  			</form>
 					</div>
 				  	<div class="modal-footer">					       
-				        <button name="salvarCat" id="salvarCat" class="btn btn-success">Salvar</button>
+				        <button name="btnSalvar" id="btnSalvar" class="btn btn-success">Salvar</button>
 				        <a href="listUsuario.php"><button name="cancelar" id="cancelar" class="btn btn-default" data-dismiss="modal">Cancelar</button></a>
 				  	</div>
 				</div>
 			</div>
 			<script language="JavaScript">
 				//function validaCampo(){
-				document.getElementById("salvarCat").onclick = function () 
+				document.getElementById("btnSalvar").onclick = function () 
 				{
 					var nome = document.getElementById("NmUsuario").value;			
 					if(nome.length <= 3)
@@ -122,32 +122,4 @@
 				};
 				//};
 			</script>
-<?php require_once("rodape.php"); ?>
-<div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-12">
-            <h2 class="page-header">Cadastro de usuários</h2>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <div class="row">
-        <div class="col-lg-12">
-        	<div class="panel panel-default">
-                <div class="panel-body">
-				<div class="modal-dialog">
-					<div class="modal-content">
-				      	<div class="modal-body">
-				       		<form class="form-horizontal" name="formCadUser" id="formCadUser" action="usuarios.php" method="post">
-								<div class="form-group">														
-									<div class="col-sm-8">
-										<div class="input-group">
-									      	<div class="input-group-addon"><span class="fa fa-user"></span></div>
-									      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
-									      	<label for="NmUsuario"></label>
-									      	<input class="form-control" name="NmUsuario" id="NmUsuario" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmUsuario']; ?>">
-										</div><span id="erron"></span>
-									</div>                   
-								</div>
-								
-				<?php require_once("rodape.php"); ?>
+			<?php require_once("rodape.php"); ?>

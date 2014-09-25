@@ -18,17 +18,17 @@
                 	<label for="fltStatus">Status</label>
 					<input type="checkbox" name="fltStatus[]" id="fltStatus[]" value="A"
 					<?php 
-						for ($i=0; $i < count($arrDados['fltStatus']); $i++) 
+						for ($i=0; $i < count($arrDados['fltStatus[]']); $i++) 
 						{ 
-							echo $arrDados['fltStatus'] == "A" ? " checked = 'checked' " : "";
+							echo $arrDados['fltStatus[]'] == "A" ? " checked = 'checked' " : "";
 						}
 					?>
 					/> Ativo
 					<input type="checkbox" name="fltStatus[]" id="fltStatus[]" value="B"
 					<?php 
-						for ($i=0; $i < count($arrDados['fltStatus']); $i++) 
+						for ($i=0; $i < count($arrDados['fltStatus[]']); $i++) 
 						{ 
-							echo $arrDados['fltStatus'] == "B" ? " checked = 'checked' " : "";
+							echo $arrDados['fltStatus[]'] == "B" ? " checked = 'checked' " : "";
 						}
 					?>/> Bloqueado
 					<label for="fltNome"></label>
