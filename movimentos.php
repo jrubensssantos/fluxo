@@ -22,7 +22,7 @@
 							, DsMovimento = '{$arrDados['DsMovimento']}'
 							, NuValor = '{$arrDados['NuValor']}'
 							, FgStatus = '{$arrDados['FgStatus']}'								
-							, tsUsuario_idUsuario = '{$_SESSION['idUsuario']}'	
+							, tsUsuario_idUsuario = '{$arrDados['idUsuario']}'	
 							, teCategoria_idCategoria = '{$arrDados['idCategoria']}'					
 						WHERE
 							idMovimento = '{$arrDados['idMovimento']}' 
@@ -84,7 +84,7 @@
 		$arrDados["NuValor"] = mysql_real_escape_string($arrDados["NuValor"]);
 		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);		
 		$arrDados["tsUsuario_idUsuario"] = mysql_real_escape_string($arrDados["tsUsuario_idUsuario"]);
-		$arrDados["teCategoria_idCategoria"] = mysql_real_escape_string($arrDados["teCategoria_idCategoria"]);	
+		$arrDados["idCategoria"] = mysql_real_escape_string($arrDados["idCategoria"]);	
 		
 		$strSQL = 	"	
 						INSERT INTO 
@@ -99,8 +99,8 @@
 								,'{$arrDados["DsMovimento"]}'
 								,'{$arrDados["NuValor"]}'
 								,'{$arrDados["FgStatus"]}'
-								,'{$arrDados["tsUsuario_idUsuario"]} = {$_SESSION['idUsuario']}'
-								,'{$arrDados["teCategoria_idCategoria"]} = {$arrDados['idCategoria']}'
+								,'{$arrDados["tsUsuario_idUsuario"]}'
+								,'{$arrDados["idCategoria"]}'
 							)
 					";
 		if(mysql_query($strSQL))

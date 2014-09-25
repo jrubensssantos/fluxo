@@ -34,6 +34,7 @@
 	
 	else if ((strlen($arrDados["idCategoria"]) > 0) && ($arrDados["acao"] === "D"))
 	{
+		
 		$arrDados["idCategoria"] = mysql_real_escape_string ($arrDados["idCategoria"]);
 		$strSQL = "DELETE FROM fluxo.teCategoria 
 					WHERE 

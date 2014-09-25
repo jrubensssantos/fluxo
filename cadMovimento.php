@@ -32,6 +32,7 @@
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>
 								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
+								      	<input type="hidden" name="tsUsuario_idUsuario" id="tsUsuario_idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>" />
 								      	<label for="DtMovimento"></label>
 								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="date" placeholder="24/09/2014" maxlength="100" value="<?php echo $objRow['DtMovimento']; ?>">
 									</div><span id="erro"></span>
@@ -51,7 +52,7 @@
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>
 								      	<label for="DsEmail"></label>
-								      	<select id="NmCategoria" name="NmCategoria" class="form-control">
+								      	<select id="idCategoria" name="idCategoria" class="form-control">
 								      		<option>Selecione uma categoria</option>
 								      		<?php 
 								      		$strSQL = "	SELECT 	idCategoria
@@ -62,10 +63,10 @@
 														WHERE 
 																1=1";
 											$objRs = mysql_query($strSQL);
-											$objRow = mysql_fetch_array($objRs);
+											
 								      		while ($objRow = mysql_fetch_array($objRs))
 											{		
-												echo"<option value='{$objRow['c.idCategoria']}'>
+												echo"<option value='{$objRow['idCategoria']}'>
 														{$objRow['NmCategoria']}
 													</option>";
 											}?>
@@ -94,7 +95,7 @@
 							<div class="form-group">
 								<div class="col-sm-2">
 									<div class="input-group">
-								      	<div class="input-group-addon"></div>							      	
+								      	<div class="input-group-addon">R$</div>							      	
 								      	<label for="NuValor"></label>
 								      	<input class="form-control" name="NuValor" id="NuValor" type="text" placeholder="Valor" maxlength="10" value="<?php echo $objRow['NuValor']; ?>">
 									</div>

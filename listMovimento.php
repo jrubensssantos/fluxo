@@ -48,7 +48,7 @@
 								//if de uma linha que trabalha os dois escopos true ou false de forma simplificada.		
 						$strSQL .= (strlen($arrDados["fltMovimento"]) <= 0)?"" :" AND c.NmCategoria LIKE '%{$arrDados["fltMovimento"]}%'";
 										
-						$objRs = mysql_query($strSQL);
+						$objRs = mysql_query($strSQL);								
 						
 						while ($objRow = mysql_fetch_array($objRs))
 						{	
