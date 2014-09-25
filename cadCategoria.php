@@ -36,10 +36,8 @@
 								<div class="col-sm-8">
 									<div class="input-group">								      	
 								      	<label for="FgStatus">Status</label> <br />	
-										<input type="radio" name="FgStatus" id="FgStatus" value="A"
-										/> Ativo
-										<input type="radio" name="FgStatus" id="FgStatus" value="B"
-										/> Bloqueado
+										<input type="radio" name="FgStatus" id="FgStatus" checked="checked" value="A" /> Ativo
+										<input type="radio" name="FgStatus" id="FgStatus" value="B" /> Bloqueado
 									</div><span id="errof"></span>
 								</div>                   
 							</div>				            

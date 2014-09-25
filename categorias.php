@@ -9,12 +9,12 @@
 		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
 		
 		$strSQL = 	"	UPDATE 
-								fluxo.teCategoria
+							fluxo.teCategoria
 						SET
-								 NmCategoria = '".$arrDados['NmCategoria']."'						
-								,FgStatus = '".$arrDados["FgStatus"] == "on" ? "A" : "B"."'									
+							 NmCategoria = '{$arrDados['NmCategoria']}'						
+							,FgStatus = '{$arrDados["FgStatus"]}'									
 						WHERE
-							idCategoria = '".$arrDados['idCategoria']." 
+							idCategoria = '{$arrDados['idCategoria']}' 
 					";
 		if(mysql_query($strSQL))
 		{

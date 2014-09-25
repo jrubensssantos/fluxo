@@ -41,15 +41,15 @@
 							echo "<td> {$objRow['NmUsuario']} </td>";
 							echo "<td> {$objRow['DsEmail']} </td>";
 							echo "<td class='center'>
-								<a href='cadUsuario.php?idUsuario={$objRow['idUsuario']}&acao=E' title='Editar'>
-									<img src='images/edit.png' alt='Editar' />
+								<a class='btn btn-info' href='cadUsuario.php?idUsuario={$arrDados["idUsuario"]}&acao=E' title='Editar'>
+									<i class='fa fa-pencil-square-o' alt='Editar'></i>
 								</a>
-								<a href='cadUsuario.php' title='Mudar senha'>
-									<img src='images/pass.png' alt='Mudar senha' />
+								<a class='btn btn-info' href='cadUsuario.php' title='Mudar senha'>
+									<i class='fa fa-key' alt='Editar'></i>
 								</a>
-								<a href='javascript: return false;' onclick='javascript: deletar({$objRow["idUsuario"]})' title='Excluir'>
-									<img src='images/delete.png' alt='Excluir' />
-								</a>
+								<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idUsuario']});' title='Excluir'>
+									<i class='fa fa-trash-o' alt='Excluir'></i>
+								</a>								
 							</td>";
 						echo "</tr>";
 						}

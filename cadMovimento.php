@@ -33,7 +33,7 @@
 								      	<div class="input-group-addon"></div>
 								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
 								      	<label for="DtMovimento"></label>
-								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="text" placeholder="24/09/2014" maxlength="100" value="<?php echo $objRow['DtMovimento']; ?>">
+								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="date" placeholder="24/09/2014" maxlength="100" value="<?php echo $objRow['DtMovimento']; ?>">
 									</div><span id="erro"></span>
 								</div>                   
 							</div>
@@ -41,10 +41,8 @@
 								<div class="col-sm-8">
 									<div class="input-group">								      	
 								      	<label for="FgStatus"></label> <br />	
-										<input type="radio" name="FgStatus" id="FgStatus" value="A"
-										/> Ativo
-										<input type="radio" name="FgStatus" id="FgStatus" value="B"
-										/> Bloqueado
+										<input type="radio" name="FgStatus" id="FgStatus" checked="checked" value="A"	/> Ativo
+										<input type="radio" name="FgStatus" id="FgStatus" value="B"	/> Bloqueado
 									</div><span id="errof"></span>
 								</div>                   
 							</div>							
@@ -67,9 +65,9 @@
 											$objRow = mysql_fetch_array($objRs);
 								      		while ($objRow = mysql_fetch_array($objRs))
 											{		
-												echo"<option value='{$objRow['idCategoria']}'>
-													{$objRow['NmCategoria']}
-												</option>";
+												echo"<option value='{$objRow['c.idCategoria']}'>
+														{$objRow['NmCategoria']}
+													</option>";
 											}?>
 										</select>
 									</div>									
@@ -79,10 +77,8 @@
 								<div class="col-sm-8">
 									<div class="input-group">								      	
 								      	<label for="FgTipo"></label> <br />	
-										<input type="radio" name="FgTipo" id="FgTipo" value="D"
-										/> Dispesa
-										<input type="radio" name="FgTipo" id="FgTipo" value="R"
-										/> Receita
+										<input type="radio" name="FgTipo" id="FgTipo" checked="checked" value="D"	/> Dispesa
+										<input type="radio" name="FgTipo" id="FgTipo" value="R"	/> Receita
 									</div><span id="errof"></span>
 								</div>                   
 							</div>

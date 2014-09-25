@@ -80,10 +80,10 @@
 								echo "</td>";
 								
 								echo "<td class='center'>
-										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$arrDados["idCategoria"]}&acao=E' data-toggle='modal' data-target='#edit'>
+										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$arrDados["idCategoria"]}&acao=E' title='Editar'>
 											<i class='fa fa-pencil-square-o'></i>
 										</a>
-										<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idCategoria']});' data-toggle='modal' data-target='#del'>
+										<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idCategoria']});' title='Excluir'>
 											<i class='fa fa-trash-o'></i>
 										</a>
 									</td>";

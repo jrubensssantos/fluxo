@@ -23,8 +23,8 @@
 			        <table class="table table-striped table-bordered table-hover">
 			            <thead>
 			                <tr>
-			                	<th>Código</th>
-			                	<th>Data de cadastro</th>
+			                	<th>Data</th>
+			                	<th>Status</th>
 			                    <th>Categoria</th>
 			                    <th>Tipo</th>
 			                    <th>Descrição</th>
@@ -53,9 +53,11 @@
 						while ($objRow = mysql_fetch_array($objRs))
 						{	
 						
-							echo "<tr>";
-							echo "<td> {$objRow['idMovimento']} </td>";
+							echo "<tr>";							
 							echo "<td> {$objRow['DtMovimento']} </td>";
+							echo "<td>";
+								echo($objRow[FgStatus] === 'A' ? 'Ativo': 'Bloqueado');
+							echo "</td>";
 							echo "<td> {$objRow['NmCategoria']} </td>";
 							echo "<td>";
 								echo($objRow[FgTipo] === 'D' ? 'Despesa': 'Receita');
@@ -63,13 +65,13 @@
 							echo "<td> {$objRow['DsMovimento']} </td>";
 							echo "<td> {$objRow['NuValor']} </td>";
 							echo "<td class='center'>
-								<a href='editUsuario.php' title='Editar'>
-									<img src='images/edit.png' alt='Editar' />
-								</a>
-								<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idMovimento']});' data-toggle='modal' data-target='#del'>
-									<i class='fa fa-trash-o'></i>
-								</a>
-							</td>";
+									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$arrDados["idMovimento"]}&acao=E' title='Editar'>
+										<i class='fa fa-pencil-square-o' alt='Editar'></i>
+									</a>								
+									<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idMovimento']});' title='Excluir'>
+										<i class='fa fa-trash-o'></i>
+									</a>
+								</td>";
 						echo "</tr>";
 						}
 						

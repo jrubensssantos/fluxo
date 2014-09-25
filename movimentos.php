@@ -5,46 +5,58 @@
 	if((strlen($arrDados["idMovimento"])>0) && ($arrDados["acao"]==="E"))
 	{
 		$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
+		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
 		$arrDados["DtMovimento"] = mysql_real_escape_string($arrDados["DtMovimento"]);
 		$arrDados["DsMovimento"] = mysql_real_escape_string($arrDados["DsMovimento"]);
-		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
-		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
-		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
+		$arrDados["NuValor"] = mysql_real_escape_string($arrDados["NuValor"]);
+		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);		
+		$arrDados["tsUsuario_idUsuario"] = mysql_real_escape_string($arrDados["tsUsuario_idUsuario"]);
+		$arrDados["teCategoria_idCategoria"] = mysql_real_escape_string($arrDados["teCategoria_idCategoria"]);	
 		
-		$strSQL = "UPDATE fluxo.tsUsuario
-			SET
-				NmUsuario = '{$arrDados['NmUsuario']}'
-				,DsEmail = '{$arrDados['DsEmail']}'
-				,DsSenha = '{$arrDados['DsSenha']}'				
-			WHERE
-					idUsuario = '{$arrDados['idUsuario']}' ";
+		$strSQL = 	"
+						UPDATE 
+							fluxo.tuMovimentos
+						SET
+							 FgTipo = '{$arrDados['FgTipo']}'
+							, DtMovimento = '{$arrDados['DtMovimento']}'
+							, DsMovimento = '{$arrDados['DsMovimento']}'
+							, NuValor = '{$arrDados['NuValor']}'
+							, FgStatus = '{$arrDados['FgStatus']}'								
+							, tsUsuario_idUsuario = '{$_SESSION['idUsuario']}'	
+							, teCategoria_idCategoria = '{$arrDados['idCategoria']}'					
+						WHERE
+							idMovimento = '{$arrDados['idMovimento']}' 
+					";
 		if(mysql_query($strSQL))
 		{
 		   echo "<script language='javascript'>
 					window.alert('Registro atualizados com sucesso!');
-					window.location=('listUsuario.php?acao=E&idUsuario={$arrDados["idUsuario"]}');
+					window.location=('listMovimento.php?acao=E&idMovimento={$arrDados["idMovimento"]}');
 				</script>";
 		}
 		else
 		{
 			echo "<script language='javascript'>
 					window.alert('Houve um erro no banco de dados!');
-					window.location=('listUsuario.php?acao=E&idUsuario={$arrDados["idUsuario"]}');
+					window.location=('listMovimento.php?acao=E&idMovimento={$arrDados["idMovimento"]}');
 				</script>";
 		}
 	}//fim da edição do registro
 	
-	else if ((strlen($arrDados["idUsuario"]) > 0) && ($arrDados["acao"] === "D"))
+	else if ((strlen($arrDados["idMovimento"]) > 0) && ($arrDados["acao"] === "D"))
 	{
-		$arrDados["idUsuario"] = mysql_real_escape_string ($arrDados["idUsuario"]);
-		$strSQL = "DELETE FROM fluxo.tsUsuario 
-					WHERE 
-					idUsuario = '".$arrDados["idUsuario"]."'
+		$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
+		
+		$strSQL = 	"
+						DELETE FROM 
+							fluxo.tuMovimento 
+						WHERE 
+							idMovimento = '{$arrDados["idMovimento"]}'
 					";
 	
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "O registro de código ".$arrDados["idUsuario"]." foi excluido com sucesso";
+			$strMsg = "O registro de código {$arrDados["idMovimento"]} foi excluido com sucesso";
 		}
 		else
 		{
@@ -57,20 +69,40 @@
 	}//fim do delete
     else
 	{
-		if(strlen($arrDados["NmUsuario"]) <= 3)
+		/*if(strlen($arrDados["NmUsuario"]) <= 3)
 		{
 			
 			header("Location: cadUsuario.php");
 			$strMsg = "O campo categoria tem que ter mais de 3 caracteres";
 			exit();
-		}
-	
-		$arrDados["NmUsuario"] = mysql_real_escape_string($arrDados["NmUsuario"]);
-		$arrDados["DsEmail"] = mysql_real_escape_string($arrDados["DsEmail"]);
-		$arrDados["DsSenha"] = mysql_real_escape_string($arrDados["DsSenha"]);	
-		$strSQL = "INSERT INTO fluxo.tsUsuario 
-							(NmUsuario, DsEmail, DsSenha) VALUES 
-							('".$arrDados["NmUsuario"]."', '".$arrDados["DsEmail"]."', '".codificaSenha($arrDados["DsSenha"])."')";
+		}*/
+
+		$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
+		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
+		$arrDados["DtMovimento"] = mysql_real_escape_string($arrDados["DtMovimento"]);
+		$arrDados["DsMovimento"] = mysql_real_escape_string($arrDados["DsMovimento"]);
+		$arrDados["NuValor"] = mysql_real_escape_string($arrDados["NuValor"]);
+		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);		
+		$arrDados["tsUsuario_idUsuario"] = mysql_real_escape_string($arrDados["tsUsuario_idUsuario"]);
+		$arrDados["teCategoria_idCategoria"] = mysql_real_escape_string($arrDados["teCategoria_idCategoria"]);	
+		
+		$strSQL = 	"	
+						INSERT INTO 
+							fluxo.tuMovimento
+							(	
+								FgTipo, DtMovimento, DsMovimento, NuValor, FgStatus
+								, tsUsuario_idUsuario, teCategoria_idCategoria) 
+						VALUES 
+							(
+								'{$arrDados["FgTipo"]}'
+								,'{$arrDados["DtMovimento"]}'
+								,'{$arrDados["DsMovimento"]}'
+								,'{$arrDados["NuValor"]}'
+								,'{$arrDados["FgStatus"]}'
+								,'{$arrDados["tsUsuario_idUsuario"]} = {$_SESSION['idUsuario']}'
+								,'{$arrDados["teCategoria_idCategoria"]} = {$arrDados['idCategoria']}'
+							)
+					";
 		if(mysql_query($strSQL))
 		{ 
 			$strMsg = "Registro inserido com sucesso: ";
@@ -93,10 +125,11 @@
 	
 		}
 	}//fim do inserte
-	echo "<div id='page-wrapper'>	
-			<div class='row'>
-        		<div class='col-lg-12' id='mensagem'>
-            		".$strMsg."<a href='listUsuario.php'>Exibir cadastros</a>
-        		</div>        				
-    		</div><!-- /.col-lg-12 -->";//fim mensagem para o usuário
-	require_once("rodape.php");
+		echo "	<div id='page-wrapper'>	
+					<div class='row'>
+	        			<div class='col-lg-12' id='mensagem'>
+	            			".$strMsg."<a href='listMovimento.php'>Exibir cadastros</a>
+	        			</div>        				
+					</div>
+				</div>";//fim mensagem para o usuário
+		require_once("rodape.php");
