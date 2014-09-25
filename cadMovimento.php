@@ -26,25 +26,24 @@
           	<div class="col-lg-12">      
         		<div class="panel panel-default">
             		<div class="panel-body">
-            			<form class="form-horizontal" name="formCadMov" id="formCadMov" action="movimentos.php" method="post">
-            				<div id="erro" name="erro"></div>
+            			<form class="form-horizontal" name="formCadMov" id="formCadMov" action="movimentos.php" method="post">            				
 							<div class="form-group">														
-								<div class="col-sm-2">
+								<div class="col-sm-3">
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>
 								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
 								      	<label for="DtMovimento"></label>
 								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="text" placeholder="24/09/2014" maxlength="100" value="<?php echo $objRow['DtMovimento']; ?>">
-									</div></span>
+									</div><span id="erro"></span>
 								</div>                   
 							</div>
 							<div class="form-group">														
 								<div class="col-sm-8">
 									<div class="input-group">								      	
 								      	<label for="FgStatus"></label> <br />	
-										<input type="checkbox" name="FgStatus" id="FgStatus" value="A"
+										<input type="radio" name="FgStatus" id="FgStatus" value="A"
 										/> Ativo
-										<input type="checkbox" name="FgStatus" id="FgStatus" value="B"
+										<input type="radio" name="FgStatus" id="FgStatus" value="B"
 										/> Bloqueado
 									</div><span id="errof"></span>
 								</div>                   
@@ -80,9 +79,9 @@
 								<div class="col-sm-8">
 									<div class="input-group">								      	
 								      	<label for="FgTipo"></label> <br />	
-										<input type="checkbox" name="FgTipo" id="FgTipo" value="D"
+										<input type="radio" name="FgTipo" id="FgTipo" value="D"
 										/> Dispesa
-										<input type="checkbox" name="FgTipo" id="FgTipo" value="R"
+										<input type="radio" name="FgTipo" id="FgTipo" value="R"
 										/> Receita
 									</div><span id="errof"></span>
 								</div>                   
