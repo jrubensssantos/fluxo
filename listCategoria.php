@@ -1,6 +1,6 @@
 <?php 
 	require_once 'topo.php'; 
-	$arrDados = $_REQUEST;
+	$arrDados = $_POST;
 ?>
 <div id="page-wrapper">
     <div class="row">
@@ -80,7 +80,7 @@
 								echo "</td>";
 								
 								echo "<td class='center'>
-										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$arrDados["idCategoria"]}&acao=E' title='Editar'>
+										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$arrDadosR["idCategoria"]}&acao=E' title='Editar'>
 											<i class='fa fa-pencil-square-o'></i>
 										</a>
 										<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idCategoria']});' title='Excluir'>

@@ -23,7 +23,7 @@
 			        <table class="table table-striped table-bordered table-hover">
 			            <thead>
 			                <tr>
-			                	<th>Data</th>
+			                	<th>Data de cadastro</th>
 			                	<th>Status</th>
 			                    <th>Categoria</th>
 			                    <th>Tipo</th>
@@ -68,7 +68,7 @@
 									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$arrDados["idMovimento"]}&acao=E' title='Editar'>
 										<i class='fa fa-pencil-square-o' alt='Editar'></i>
 									</a>								
-									<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idMovimento']});' title='Excluir'>
+									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$arrDados["idMovimento"]}&acao=D' title='Excluir'>
 										<i class='fa fa-trash-o'></i>
 									</a>
 								</td>";

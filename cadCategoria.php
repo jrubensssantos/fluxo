@@ -1,15 +1,15 @@
 ﻿<?php require_once("topo.php"); 
-	$idUsuario = $_GET["idUsuario"]==""?0:$_GET["idUsuario"];
+	$idCategoria = $_GET["idCategoria"]==""?0:$_GET["idCategoria"];
 	$strAcao = "I";
-	if($idUsuario!=0)
+	if($idCategoria!=0)
 	{
 		$strSQL = "SELECT
-						 NmUsuario
-						, DsEmail
+						 NmCategoria
+						, FgAtivo
 					FROM
-						tsUsuario
+						teCategoria
 					WHERE
-						idUsuario = '".mysql_real_escape_string($idUsuario)."' "; 
+						idCategoria = '".mysql_real_escape_string($idCategoria)."' "; 
 	
 		$objRs = mysql_query($strSQL);
 		$objRow = mysql_fetch_array($objRs);
@@ -26,6 +26,7 @@
 								<div class="col-sm-8">
 									<div class="input-group">
 								      	<div class="input-group-addon"><span class="fa fa-cat"></span></div>
+								      	<input type="hidden" name="idCategoria" id="idCategoria" value="<?php echo $objRow["idCategoria"]; ?>" />
 								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
 								      	<label for="NmCategoria"></label>
 								      	<input class="form-control" name="NmCategoria" id="NmCategoria" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmCategoria']; ?>">

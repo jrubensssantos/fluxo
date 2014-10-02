@@ -43,7 +43,10 @@
 	
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "O registro de código ".$arrDados["idCategoria"]." foi excluido com sucesso";
+			$strMsg = "<script language='javascript'> alert('O registro de código ".$arrDados["idCategoria"]." foi excluido com sucesso'); 
+								window.location=('listCategoria.php');</script>";
+			echo $strMsg;
+			exit;
 		}
 		else
 		{
