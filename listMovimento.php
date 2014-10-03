@@ -65,10 +65,10 @@
 							echo "<td> {$objRow['DsMovimento']} </td>";
 							echo "<td> {$objRow['NuValor']} </td>";
 							echo "<td class='center'>
-									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$arrDados["idMovimento"]}&acao=E' title='Editar'>
+									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$objRow["idMovimento"]}' title='Editar'>
 										<i class='fa fa-pencil-square-o' alt='Editar'></i>
 									</a>								
-									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$arrDados["idMovimento"]}&acao=D' title='Excluir'>
+									<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idMovimento']});' title='Excluir'>
 										<i class='fa fa-trash-o'></i>
 									</a>
 								</td>";
@@ -91,7 +91,7 @@
 							}
 							else
 							{
-								window.location="movimentos.php?idMovimentos=" + pstrId + "&acao=D";
+								window.location="movimentos.php?idMovimento=" + pstrId + "&acao=D";
 							};
 						};
 					</script>

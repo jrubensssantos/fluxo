@@ -1,6 +1,17 @@
-﻿<?php require_once("topo.php"); 
+﻿<?php require_once("topo.php");
+	$arrDados = $_GET;
+	
+	$arrDados["acao"] = mysql_real_escape_string($arrDados["acao"]);
+	$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
+	$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
+	$arrDados["DtMovimento"] = mysql_real_escape_string($arrDados["DtMovimento"]);
+	$arrDados["DsMovimento"] = mysql_real_escape_string($arrDados["DsMovimento"]);
+	$arrDados["NuValor"] = mysql_real_escape_string($arrDados["NuValor"]);
+	$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);		
+	$arrDados["tsUsuario_idUsuario"] = mysql_real_escape_string($arrDados["tsUsuario_idUsuario"]);
+	$arrDados["teCategoria_idCategoria"] = mysql_real_escape_string($arrDados["teCategoria_idCategoria"]);
+	 
 	$idMovimento = $_GET["idMovimento"]==""?0:$_GET["idMovimento"];
-	$strAcao = "I";
 	if($idMovimento!=0)
 	{
 		$strSQL = "	SELECT 	
@@ -13,12 +24,10 @@
 					ON 		
 							c.idCategoria = m.teCategoria_idCategoria											
 					WHERE 
-							idMovimento = '".mysql_real_escape_string(idMovimento)."' ";
+							idMovimento = '{$arrDados["idMovimento"]}' ";
 						
 	
-		$objRs = mysql_query($strSQL);
-		$objRow = mysql_fetch_array($objRs);
-		$strAcao = "E";
+		$objRow = mysql_fetch_array(mysql_query($strSQL));
 	}
 ?>
        <div id="page-wrapper">
@@ -29,29 +38,35 @@
             			<form class="form-horizontal" name="formCadMov" id="formCadMov" action="movimentos.php" method="post">            				
 							<div class="form-group">														
 								<div class="col-sm-3">
+									<label for="DtMovimento">Data de cadastro</label>
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>
-								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
+								      	<input type="hidden" name="acao" id="acao" value="E" />
+								      	<input type="hidden" name="idMovimento" id="idMovimento" value="<?php echo $arrDados['idMovimento']; ?>" />
 								      	<input type="hidden" name="tsUsuario_idUsuario" id="tsUsuario_idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>" />
-								      	<label for="DtMovimento"></label>
-								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="date" placeholder="24/09/2014" maxlength="100" value="<?php echo $objRow['DtMovimento']; ?>">
+								      	<input type="hidden" name="teCategoria_idCategoria" id="teCategoria_idCategoria" value="<?php echo $arrDados['idCategoria']; ?>" />								      	
+								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="date" value="<?php echo $objRow['DtMovimento']; ?>">
 									</div><span id="erro"></span>
 								</div>                   
 							</div>
 							<div class="form-group">														
-								<div class="col-sm-8">
-									<div class="input-group">								      	
-								      	<label for="FgStatus"></label> <br />	
-										<input type="radio" name="FgStatus" id="FgStatus" checked="checked" value="A"	/> Ativo
-										<input type="radio" name="FgStatus" id="FgStatus" value="B"	/> Bloqueado
+								<div class="col-sm-4">
+									<label for="FgStatus">Status</label><br />
+									<div class="input-group">
+										<div class="input-group-addon"></div>					
+										<select id="FgStatus" name="FgStatus" class="form-control">
+											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
+											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
+											</select> 
+										<br />
 									</div><span id="errof"></span>
 								</div>                   
 							</div>							
        						<div class="form-group">					
 								<div class="col-sm-4">
+									<label for="DsEmail">Categoria</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"></div>
-								      	<label for="DsEmail"></label>
+								      	<div class="input-group-addon"></div>								      	
 								      	<select id="idCategoria" name="idCategoria" class="form-control">
 								      		<option>Selecione uma categoria</option>
 								      		<?php 
@@ -73,30 +88,34 @@
 										</select>
 									</div>									
 								</div>                   
-							</div>
-							<div class="form-group">														
-								<div class="col-sm-8">
-									<div class="input-group">								      	
-								      	<label for="FgTipo"></label> <br />	
-										<input type="radio" name="FgTipo" id="FgTipo" checked="checked" value="D"	/> Dispesa
-										<input type="radio" name="FgTipo" id="FgTipo" value="R"	/> Receita
+							</div>						
+							<div class="form-group">
+								<div class="col-sm-4">
+									<label for="FgTipo">Tipo</label>
+									<div class="input-group">
+										<div class="input-group-addon"></div>
+								      	<select id="FgTipo" name="FgTipo" class="form-control">
+											<option value="A" <?php echo $objRow["FgTipo"]==="D"?" selected = 'selected' ":""; ?> >Dispesa</option>
+											<option value="B" <?php echo $objRow["FgTipo"]==="R"?" selected = 'selected' ":""; ?> >Receita</option>
+											</select> 
+										<br />	
 									</div><span id="errof"></span>
 								</div>                   
 							</div>
 							<div class="form-group">
 								<div class="col-sm-4">
+									<label for="DsMovimento">Descrição do movimento</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"></div>							      	
-								      	<label for="DsMovimento"></label>
-								      	<input class="form-control" name="DsMovimento" id="DsMovimento" type="textarea" placeholder="Descrição do movimento" maxlength="255" value="<?php echo $objRow['DsMovimento']; ?>">
+								      	<div class="input-group-addon"></div>	      	
+								      	<textarea class="form-control" name="DsMovimento" id="DsMovimento" rows="5" cols="50" placeholder="Descrição do movimento" maxlength="255" value="<?php echo $objRow['DsMovimento']; ?>"></textarea>
 									</div>
 								</div> 
 							</div>
 							<div class="form-group">
 								<div class="col-sm-2">
+									<label for="NuValor">Valor</label>
 									<div class="input-group">
-								      	<div class="input-group-addon">R$</div>							      	
-								      	<label for="NuValor"></label>
+								      	<div class="input-group-addon">R$</div>									      	
 								      	<input class="form-control" name="NuValor" id="NuValor" type="text" placeholder="Valor" maxlength="10" value="<?php echo $objRow['NuValor']; ?>">
 									</div>
 								</div> 

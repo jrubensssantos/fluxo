@@ -1,38 +1,47 @@
 <?php 
 	require_once("topo.php");
 	$arrDados = $_REQUEST; 
-  
-	if((strlen($arrDados["idCategoria"])>0) && ($arrDados["acao"]==="E"))
+	
+	$arrDados["acao"] = mysql_real_escape_string($arrDados["acao"]);
+  	$arrDados["idCategoria"] = mysql_real_escape_string($arrDados["idCategoria"]);
+	$arrDados["NmCategoria"] = mysql_real_escape_string($arrDados["NmCategoria"]);
+	$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
+	
+	//if(($arrDados["acao"]==="E"))
+	if((strlen($arrDados["idCategoria"]) > 0) && ($arrDados["acao"] === "E"))
 	{
-		$arrDados["idCategoria"] = mysql_real_escape_string($arrDados["idCategoria"]);
-		$arrDados["NmCategoria"] = mysql_real_escape_string($arrDados["NmCategoria"]);
-		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
-		
+
 		$strSQL = 	"	UPDATE 
 							fluxo.teCategoria
 						SET
-							 NmCategoria = '{$arrDados['NmCategoria']}'						
-							,FgStatus = '{$arrDados["FgStatus"]}'									
+							 NmCategoria = 	'{$arrDados['NmCategoria']}'						
+							,FgStatus = 	'{$arrDados["FgStatus"]}'									
 						WHERE
-							idCategoria = '{$arrDados['idCategoria']}' 
+							idCategoria = 	'{$arrDados['idCategoria']}' 
 					";
 		if(mysql_query($strSQL))
 		{
-		   echo "<script language='javascript'>
-					window.alert('Registro atualizados com sucesso!');
-					window.location=('categorias.php?acao=E&idCategoria={$arrDados["idCategoria"]}');
-				</script>";
+		   $strMsg = 'Registro(s) atualizado(s) com sucesso! ';
+		   		// <script language='javascript'>
+					// window.alert('Registro atualizados com sucesso!');
+					// window.location=('cadCategoria.php?acao=idCategoria={$arrDados["idCategoria"]}');
+				// </script>";
 		}
 		else
 		{
-			echo "<script language='javascript'>
-					window.alert('Houve um erro no banco de dados!');
-					window.location=('categorias.php?acao=E&idCategoria={$arrDados["idCategoria"]}');
-				</script>";
+			$strMsg = "Erro na query ".mysql_error()." O administrador foi avisado. ";
+			mail("jhouper@hotmail.com", "Erro Mysql"
+			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
+			, "From: jhouper@hotmail.com");
+				// "<script language='javascript'>
+					// window.alert('Houve um erro no banco de dados!');
+					// window.location=('cadCategorias.php?idCategoria={$arrDados["idCategoria"]}');
+				// </script>";
 		}
 	}//fim da edição do registro
 	
 	else if ((strlen($arrDados["idCategoria"]) > 0) && ($arrDados["acao"] === "D"))
+	//else if ((strlen($arrDados["idCategoria"]) > 0) && ($arrDados["acao"] === "D"))
 	{
 		
 		$arrDados["idCategoria"] = mysql_real_escape_string ($arrDados["idCategoria"]);
@@ -43,21 +52,19 @@
 	
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "<script language='javascript'> alert('O registro de código ".$arrDados["idCategoria"]." foi excluido com sucesso'); 
-								window.location=('listCategoria.php');</script>";
-			echo $strMsg;
-			exit;
+			$strMsg = "O registro de código ".$arrDados["idCategoria"]." foi excluido com sucesso. ";
 		}
 		else
 		{
-			$strMsg = "Erro no mysql. O adm foi avisado.";
+			$strMsg = "Erro na query ".mysql_error()." O administrador foi avisado. ";
 			mail("jhouper@hotmail.com", "Erro Mysql"
 			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
 			, "From: jhouper@hotmail.com");
 		}
 	
 	}//fim do delete
-    else
+	
+	else
 	{
 		if(strlen($arrDados["NmCategoria"]) <= 3)
 		{
@@ -78,7 +85,7 @@
 		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
 		$strSQL = 	"		
 						INSERT INTO 
-							tecategoria(NmCategoria, FgStatus) 
+							fluxo.teCategoria(NmCategoria, FgStatus) 
 						VALUES 
 						(
 							'{$arrDados["NmCategoria"]}'
@@ -88,11 +95,11 @@
 						
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "Categoria cadastrada com sucesso!";
+			$strMsg = "Categoria cadastrada com sucesso! ";
 		}
 		else
 		{
-			$strMsg = "Erro no mysql ".mysql_error()." O administrador foi avisado.";
+			$strMsg = "Erro no query ".mysql_error()." O administrador foi avisado. ";
 			/*
 			$headers  = 'MIME-Version: 1.0' . "\r\n";
 			$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
@@ -110,8 +117,9 @@
 	}//fim do inserte
 	echo "<div id='page-wrapper'>	
 			<div class='row'>
-        		<div class='col-lg-12' id='mensagem'>
-            		".$strMsg."<a href='listCategoria.php'> Exibir cadastros</a>
-        		</div>        				
+        		<div class='col-lg-12' id='mensagem'>";
+				echo $strSQL.
+		var_dump($arrDados)
+            .$strMs."<a href='listCategoria.php'> Exibir cadastros</a>      				
     		</div><!-- /.col-lg-12 -->";//fim mensagem para o usuário
 	require_once("rodape.php");

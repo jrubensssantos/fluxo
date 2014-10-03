@@ -1,6 +1,6 @@
 ﻿<?php 
 	require_once("topo.php"); 
-	$arrDados = $_REQUEST;
+	$arrDados = $_POST;
 ?>
 <div id="page-wrapper">
     <div class="row">
@@ -41,7 +41,7 @@
 							echo "<td> {$objRow['NmUsuario']} </td>";
 							echo "<td> {$objRow['DsEmail']} </td>";
 							echo "<td class='center'>
-								<a class='btn btn-info' href='cadUsuario.php?idUsuario={$arrDados["idUsuario"]}&acao=E' title='Editar'>
+								<a class='btn btn-info' href='cadUsuario.php?idUsuario={$objRow["idUsuario"]}' title='Editar'>
 									<i class='fa fa-pencil-square-o' alt='Editar'></i>
 								</a>
 								<a class='btn btn-info' href='cadUsuario.php' title='Mudar senha'>
@@ -63,7 +63,7 @@
 						</button></a>
 					</div>
 					<script language="javascript">
-						function deletar(pstrId)
+						function excluir(pstrId)
 						{
 							if(!window.confirm("Deseja realmente excluir o registo  " + pstrId + "?"))
 							{

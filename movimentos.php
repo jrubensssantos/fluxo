@@ -2,17 +2,16 @@
 	require_once("topo.php");
 	$arrDados = $_REQUEST; 
   	
+	$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
+	$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
+	$arrDados["DtMovimento"] = mysql_real_escape_string($arrDados["DtMovimento"]);
+	$arrDados["DsMovimento"] = mysql_real_escape_string($arrDados["DsMovimento"]);
+	$arrDados["NuValor"] = mysql_real_escape_string($arrDados["NuValor"]);
+	$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);		
+	$arrDados["tsUsuario_idUsuario"] = mysql_real_escape_string($arrDados["tsUsuario_idUsuario"]);
+	$arrDados["teCategoria_idCategoria"] = mysql_real_escape_string($arrDados["teCategoria_idCategoria"]);
 	if((strlen($arrDados["idMovimento"])>0) && ($arrDados["acao"]==="E"))
-	{
-		$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
-		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);
-		$arrDados["DtMovimento"] = mysql_real_escape_string($arrDados["DtMovimento"]);
-		$arrDados["DsMovimento"] = mysql_real_escape_string($arrDados["DsMovimento"]);
-		$arrDados["NuValor"] = mysql_real_escape_string($arrDados["NuValor"]);
-		$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);		
-		$arrDados["tsUsuario_idUsuario"] = mysql_real_escape_string($arrDados["tsUsuario_idUsuario"]);
-		$arrDados["teCategoria_idCategoria"] = mysql_real_escape_string($arrDados["teCategoria_idCategoria"]);	
-		
+	{		
 		$strSQL = 	"
 						UPDATE 
 							fluxo.tuMovimentos

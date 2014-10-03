@@ -18,17 +18,17 @@
                 	<label for="fltStatus">Status</label>
 					<input type="checkbox" name="fltStatus[]" id="fltStatus[]" value="A"
 					<?php 
-						for ($i=0; $i < count($arrDados['fltStatus[]']); $i++) 
+						for ($i=0; $i < count($arrDados['fltStatus']); $i++) 
 						{ 
-							echo $arrDados['fltStatus[]'] == "A" ? " checked = 'checked' " : "";
+							echo $arrDados['fltStatus[$i]'] == "A" ? " checked = 'checked' " : "";
 						}
 					?>
 					/> Ativo
 					<input type="checkbox" name="fltStatus[]" id="fltStatus[]" value="B"
 					<?php 
-						for ($i=0; $i < count($arrDados['fltStatus[]']); $i++) 
+						for ($i=0; $i < count($arrDados['fltStatus']); $i++) 
 						{ 
-							echo $arrDados['fltStatus[]'] == "B" ? " checked = 'checked' " : "";
+							echo $arrDados['fltStatus[$i]'] == "B" ? " checked = 'checked' " : "";
 						}
 					?>/> Bloqueado
 					<label for="fltNome"></label>
@@ -65,7 +65,7 @@
 							
 						}
 						$strPidStatus = substr($strPidStatus, 1);
-						$strSQL .= ($strPidStatus != "") ?" AND FgStatus in '({$strPidStatus})' " : "";			
+						$strSQL .= ($strPidStatus != "") ?" AND FgStatus in ({$strPidStatus})" : "";			
 						
 						//se estiver usando a versao ate 5.5 ainda usara o mysql_query assima dessa versao usar o pdo. 
 						$objRs = mysql_query($strSQL);
@@ -80,7 +80,7 @@
 								echo "</td>";
 								
 								echo "<td class='center'>
-										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$arrDadosR["idCategoria"]}&acao=E' title='Editar'>
+										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$objRow["idCategoria"]}' title='Editar'>
 											<i class='fa fa-pencil-square-o'></i>
 										</a>
 										<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idCategoria']});' title='Excluir'>
@@ -95,7 +95,7 @@
 					<!-- Button trigger modal -->
  					<div class="clear"></div>
             			<div class="panel pull-right">        
-							<a href="cadCategoria.php"><button class="btn btn-primary btn-sm" id="btnNovo" name="btnNovo" data-toggle="modal" data-target="#myModal" class="pull-right">
+							<a href="cadCategoria.php"><button class="btn btn-primary btn-sm" id="btnNovo" name="btnNovo" class="pull-right">
  							<span class="fa fa-plus"></span> &nbsp; Nova Categoria  
 							</button></a>
 						</div>

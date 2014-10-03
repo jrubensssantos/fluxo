@@ -1,19 +1,19 @@
-﻿<?php require_once("topo.php"); 
-	$idCategoria = $_GET["idCategoria"]==""?0:$_GET["idCategoria"];
-	$strAcao = "I";
+﻿<?php require_once("topo.php");
+	$arrDados = $_GET;
+	
+	$arrDados["idCategoria"] = mysql_real_escape_string($arrDados["idCategoria"]); 
+	$idCategoria = $arrDados["idCategoria"]==""?0:$_GET["idCategoria"];
 	if($idCategoria!=0)
 	{
 		$strSQL = "SELECT
 						 NmCategoria
-						, FgAtivo
+						, FgStatus
 					FROM
 						teCategoria
 					WHERE
-						idCategoria = '".mysql_real_escape_string($idCategoria)."' "; 
+						idCategoria = '{$arrDados["idCategoria"]}' "; 
 	
-		$objRs = mysql_query($strSQL);
-		$objRow = mysql_fetch_array($objRs);
-		$strAcao = "E";
+		$objRow = mysql_fetch_array(mysql_query($strSQL));
 	}
 ?>
        <div id="page-wrapper">
@@ -24,21 +24,25 @@
             			<form class="form-horizontal" name="formCadCat" id="formCadCat" action="categorias.php" method="post">
 							<div class="form-group">														
 								<div class="col-sm-8">
+									<label for="NmCategoria">Categoria</label>
 									<div class="input-group">
 								      	<div class="input-group-addon"><span class="fa fa-cat"></span></div>
-								      	<input type="hidden" name="idCategoria" id="idCategoria" value="<?php echo $objRow["idCategoria"]; ?>" />
-								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
-								      	<label for="NmCategoria"></label>
+								      	<input type="hidden" name="idCategoria" id="idCategoria" value="<?php echo $arrDados["idCategoria"]; ?>" />
+								      	<input type="hidden" name="acao" id="acao" value="E" />								      	
 								      	<input class="form-control" name="NmCategoria" id="NmCategoria" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmCategoria']; ?>">
 									</div><span id="erron"></span>
 								</div>                   
 							</div>
 							<div class="form-group">														
 								<div class="col-sm-8">
-									<div class="input-group">								      	
-								      	<label for="FgStatus">Status</label> <br />	
-										<input type="radio" name="FgStatus" id="FgStatus" checked="checked" value="A" /> Ativo
-										<input type="radio" name="FgStatus" id="FgStatus" value="B" /> Bloqueado
+									<label for="FgStatus">Status</label><br />
+									<div class="input-group">
+										<div class="input-group-addon"></div>						      	
+										<select id="FgStatus" name="FgStatus" class="form-control">
+											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
+											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
+											</select> 
+										<br />
 									</div><span id="errof"></span>
 								</div>                   
 							</div>				            

@@ -1,6 +1,8 @@
 <?php require_once("topo.php"); 
-	$idUsuario = $_GET["idUsuario"]==""?0:$_GET["idUsuario"];
-	$strAcao = "I";
+	$arrDados = $_GET;
+	
+	$arrDados["idUsuario"] = mysql_real_escape_string($arrDados["idUsuario"]);
+	$idUsuario = $arrDados["idUsuario"]==""?0:$arrDados["idUsuario"];
 	if($idUsuario!=0)
 	{
 		$strSQL = "SELECT
@@ -9,11 +11,9 @@
 					FROM
 						tsUsuario
 					WHERE
-						idUsuario = '".mysql_real_escape_string($idUsuario)."' "; 
+						idUsuario = '{$arrDados["idUsuario"]}' "; 
 	
-		$objRs = mysql_query($strSQL);
-		$objRow = mysql_fetch_array($objRs);
-		$strAcao = "E";
+		$objRow = mysql_fetch_array(mysql_query($strSQL));
 	}
 ?>
        <div id="page-wrapper">
@@ -24,38 +24,39 @@
             			<form class="form-horizontal" name="formCadUser" id="formCadUser" action="usuarios.php" method="post">
 							<div class="form-group">														
 								<div class="col-sm-8">
+									<label for="NmUsuario">Nome</label>
 									<div class="input-group">
 								      	<div class="input-group-addon"><span class="fa fa-user"></span></div>
-								      	<input type="hidden" name="acao" id="acao" value="<?php echo $strAcao; ?>" />
-								      	<label for="NmUsuario"></label>
+								      	<input type="text" name="idUsuario" id="idUsuario" value="<?php echo $arrDados["idUsuario"]; ?>" />
+								      	<input type="hidden" name="acao" id="acao" value="E" />								      	
 								      	<input class="form-control" name="NmUsuario" id="NmUsuario" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmUsuario']; ?>">
 									</div><span id="erron"></span>
 								</div>                   
 							</div>
        						<div class="form-group">					
 								<div class="col-sm-8">
+									<label for="DsEmail">Email</label>
 									<div class="input-group">
-								      	<div class="input-group-addon">@</div>
-								      	<label for="DsEmail"></label>
+								      	<div class="input-group-addon">@</div>								      	
 								      	<input class="form-control" name="DsEmail" id="DsEmail" type="text" placeholder="Email" maxlength="255" value="<?php echo $objRow['DsEmail']; ?>">
 									</div><span id="erroe"></span>										
 								</div>                   
 							</div>
 				            <div class="form-group">					
 								<div class="col-sm-6">
+									<label for="DsSenha">Senha</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"><span class="fa fa-key"></span></div>
-								      	<label for="DsSenha"></label>
-								      	<input type="password" class="form-control" name="DsSenha" id="DsSenha" type="text" placeholder="Senha" maxlength="8">
+								      	<div class="input-group-addon"><span class="fa fa-key"></span></div>								      	
+								      	<input type="password" class="form-control" name="DsSenha" id="DsSenha" placeholder="Senha" maxlength="8" >
 									</div><span id="erros"></span>										
 								</div>                   
 							</div>
 				            <div class="form-group">					
 								<div class="col-sm-6">
+									<label for="ConfSenha">Confirma senha</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"><span class="fa fa-key"></span></div>
-								      	<label for="ConfSenha"></label>
-								      	<input type="password" class="form-control" name="ConfSenha" id="ConfSenha" type="text" placeholder="Confirme a senha" maxlength="8">
+								      	<div class="input-group-addon"><span class="fa fa-key"></span></div>								      	
+								      	<input type="password" class="form-control" name="ConfSenha" id="ConfSenha" placeholder="Confirme a senha" maxlength="8" >
 									</div><span id="errocs"></span>										
 								</div>                   
 							</div> 
@@ -94,9 +95,9 @@
 						document.getElementById("erroe").innerHTML=""; 
 					};
 					var senha = document.getElementById("DsSenha").value;			
-					if(senha.length < 8)
+					if(senha.length < 4)
 					{ 
-						document.getElementById("erros").innerHTML="<font color='red'>A senha dever ter 8 caracter</font>";
+						document.getElementById("erros").innerHTML="<font color='red'>A senha dever ter no minimo 4 caracter</font>";
 						//window.alert("Este campo é obrigatório!");
 						return false;
 					}
