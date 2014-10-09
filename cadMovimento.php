@@ -42,10 +42,13 @@
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>
 								      	<input type="hidden" name="acao" id="acao" value="E" />
+								      	
 								      	<input type="hidden" name="idMovimento" id="idMovimento" value="<?php echo $arrDados['idMovimento']; ?>" />
 								      	<input type="hidden" name="tsUsuario_idUsuario" id="tsUsuario_idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>" />
-								      	<input type="hidden" name="teCategoria_idCategoria" id="teCategoria_idCategoria" value="<?php echo $arrDados['idCategoria']; ?>" />								      	
-								      	<input class="form-control" name="DtMovimento" id="DtMovimento" type="date" value="<?php echo $objRow['DtMovimento']; ?>">
+								      	<!-- <input type="hidden" class="form-control" name="DtMovimento" id="DtMovimento" value="<?php echo $arrDados['DtMovimento']; ?>"> -->
+								      	<!-- <input type="text" name="teCategoria_idCategoria" id="teCategoria_idCategoria" value="<?php echo "idCategoria".$arrDados['idCategoria']; ?>" />	 -->							      	
+								      	
+								      	<input type="date" class="form-control" name="DtMovimento" id="DtMovimento" value="<?php echo $objRow['DtMovimento']; ?>">							      	
 									</div><span id="erro"></span>
 								</div>                   
 							</div>
@@ -67,8 +70,7 @@
 									<label for="DsEmail">Categoria</label>
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>								      	
-								      	<select id="idCategoria" name="idCategoria" class="form-control">
-								      		<option>Selecione uma categoria</option>
+								      	<select id="teCategoria_idCategoria" name="teCategoria_idCategoria" class="form-control">
 								      		<?php 
 								      		$strSQL = "	SELECT 	idCategoria
 																, NmCategoria
@@ -79,10 +81,10 @@
 																1=1";
 											$objRs = mysql_query($strSQL);
 											
-								      		while ($objRow = mysql_fetch_array($objRs))
+								      		while ($retorna = mysql_fetch_array($objRs))
 											{		
-												echo"<option value='{$objRow['idCategoria']}'>
-														{$objRow['NmCategoria']}
+												echo"<option value='{$retorna['idCategoria']}'>
+														{$retorna['NmCategoria']}
 													</option>";
 											}?>
 										</select>
@@ -95,8 +97,8 @@
 									<div class="input-group">
 										<div class="input-group-addon"></div>
 								      	<select id="FgTipo" name="FgTipo" class="form-control">
-											<option value="A" <?php echo $objRow["FgTipo"]==="D"?" selected = 'selected' ":""; ?> >Dispesa</option>
-											<option value="B" <?php echo $objRow["FgTipo"]==="R"?" selected = 'selected' ":""; ?> >Receita</option>
+											<option value="D" <?php echo $objRow["FgTipo"]==="D"?" selected = 'selected' ":""; ?> >Dispesa</option>
+											<option value="R" <?php echo $objRow["FgTipo"]==="R"?" selected = 'selected' ":""; ?> >Receita</option>
 											</select> 
 										<br />	
 									</div><span id="errof"></span>
@@ -107,7 +109,7 @@
 									<label for="DsMovimento">Descrição do movimento</label>
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>	      	
-								      	<textarea class="form-control" name="DsMovimento" id="DsMovimento" rows="5" cols="50" placeholder="Descrição do movimento" maxlength="255" value="<?php echo $objRow['DsMovimento']; ?>"></textarea>
+								      	<input type="text" class="form-control" name="DsMovimento" id="DsMovimento" placeholder="Descrição do movimento" maxlength="255" value="<?php echo $objRow['DsMovimento']; ?>" />
 									</div>
 								</div> 
 							</div>

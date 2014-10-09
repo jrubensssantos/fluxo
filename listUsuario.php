@@ -44,7 +44,7 @@
 								<a class='btn btn-info' href='cadUsuario.php?idUsuario={$objRow["idUsuario"]}' title='Editar'>
 									<i class='fa fa-pencil-square-o' alt='Editar'></i>
 								</a>
-								<a class='btn btn-info' href='cadUsuario.php' title='Mudar senha'>
+								<a class='btn btn-info' href='mudaSenha.php' title='Mudar senha'>
 									<i class='fa fa-key' alt='Editar'></i>
 								</a>
 								<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idUsuario']});' title='Excluir'>

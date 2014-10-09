@@ -1,6 +1,6 @@
 <?php 
 	require_once("topo.php");
-	$arrDados = $_REQUEST; 
+	$arrDados = $_POST; 
 ?>
 <div id="page-wrapper">
     <div class="row">

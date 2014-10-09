@@ -7,7 +7,6 @@
 	$arrDados["NmCategoria"] = mysql_real_escape_string($arrDados["NmCategoria"]);
 	$arrDados["FgStatus"] = mysql_real_escape_string($arrDados["FgStatus"]);
 	
-	//if(($arrDados["acao"]==="E"))
 	if((strlen($arrDados["idCategoria"]) > 0) && ($arrDados["acao"] === "E"))
 	{
 
@@ -15,7 +14,7 @@
 							fluxo.teCategoria
 						SET
 							 NmCategoria = 	'{$arrDados['NmCategoria']}'						
-							,FgStatus = 	'{$arrDados["FgStatus"]}'									
+							,FgStatus = 	'{$arrDados['FgStatus']}'									
 						WHERE
 							idCategoria = 	'{$arrDados['idCategoria']}' 
 					";
