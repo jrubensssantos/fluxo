@@ -32,7 +32,8 @@
 			                    <th>Ação</th>
 			                </tr>
 			            </thead>                    
-						<?php		
+						<?php
+								
 						$arrDados["fltMovimento"] = mysql_real_escape_string($arrDados["fltMovimento"]);					
 						$strSQL = "SELECT 	
 											u.NmUsuario, c.NmCategoria, m.idMovimento, date_format(m.DtMovimento, '%d/%m/%Y') AS DtMovimento,  
@@ -66,10 +67,10 @@
 							echo "<td> {$objRow['NuValor']} </td>";
 							echo "<td class='center'>
 									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$objRow["idMovimento"]}' title='Editar'>
-										<i class='fa fa-pencil-square-o' alt='Editar'></i>
+										<img src='images/edit.png' alt='Editar' />
 									</a>								
 									<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idMovimento']});' title='Excluir'>
-										<i class='fa fa-trash-o'></i>
+										<img src='images/delete.png' alt='Excluir' />
 									</a>
 								</td>";
 						echo "</tr>";

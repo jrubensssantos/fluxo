@@ -1,5 +1,5 @@
 ﻿<?php 
-	require_once("topo.php"); 
+	require_once("topo.php");
 	$arrDados = $_POST;
 ?>
 <div id="page-wrapper">
@@ -42,13 +42,13 @@
 							echo "<td> {$objRow['DsEmail']} </td>";
 							echo "<td class='center'>
 								<a class='btn btn-info' href='cadUsuario.php?idUsuario={$objRow["idUsuario"]}' title='Editar'>
-									<i class='fa fa-pencil-square-o' alt='Editar'></i>
+									<img src='images/edit.png' alt='Editar' />
 								</a>
-								<a class='btn btn-info' href='mudaSenha.php' title='Mudar senha'>
-									<i class='fa fa-key' alt='Editar'></i>
+								<a class='btn btn-info' href='mudaSenha.php?idUsuario={$objRow["idUsuario"]}' title='Mudar senha'>
+									<img src='images/pass.png' alt='Mudar senha' />
 								</a>
 								<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idUsuario']});' title='Excluir'>
-									<i class='fa fa-trash-o' alt='Excluir'></i>
+									<img src='images/delete.png' alt='Excluir' />
 								</a>								
 							</td>";
 						echo "</tr>";

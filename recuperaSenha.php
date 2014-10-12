@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Login</title>
+		<title>recuperaSenha</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 		<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -23,28 +23,21 @@
 		          <h1 class="text-center"><img src="images/logo.png" width="250" alt="logo"/></h1>
 		      </div>
 		      <div class="modal-body">
-		          <form class="form col-md-12 center-block" method="POST" id="form" name="form" action="indexAcao.php">
+		          <form class="form col-md-12 center-block" method="post" id="form" name="form" action="alteraSenha.php">
 		            <div class="form-group">
 		            	<label for="DsEmail">Email</label>
-		              	<input type="text" class="form-control input-lg" placeholder="LOGIN" autofocus="autofocus" id="DsEmail" name="DsEmail" required>
+		              	<input type="text" class="form-control input-lg" placeholder="digite seu email" autofocus="autofocus" id="DsEmail" name="DsEmail" required>
 		            </div>
 		            <div class="form-group">
-		            	<label for="DsSenha">Senha</label>
-		              	<input type="password" id="DsSenha" name="DsSenha" class="form-control input-lg" maxlength="8" placeholder="SENHA" required>
-		            </div>
-		            <div class="form-group">
-		              <button class="btn btn-primary btn-lg btn-block" id="entrar">Entrar</button>
-		              <span><a href="recuperaSenha.php">Esqueceu sua senha?</a></span>
-		            </div>
+		              <button class="btn btn-primary btn-lg btn-block" id="entrar">Enviar</button>
 		          </form>
 	          	<script language="javascript">
 					var valida = document.getElementById("entrar").onclick =
 					function ()   {
 						var dsemail = document.getElementById("DsEmail").value;
-						var dssenha = document.getElementById("DsSenha").value;
 						if ((dsemail.length < 3) && (dssenha.length < 8))
 						{
-							window.alert("Login ou Senha Inválida");
+							window.alert("Este email não esta cadastrado no sistema!");
 						}
 						/*
 						else if (dssenha.length<3)
@@ -70,4 +63,3 @@
 		<script src="js/scripts.js"></script>
 	</body>
 </html>
-

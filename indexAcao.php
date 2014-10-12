@@ -5,8 +5,8 @@ $arrDados['DsEmail'] = mysql_real_escape_string($arrDados["DsEmail"]);
 $arrDados['DsSenha'] = md5(mysql_real_escape_string($arrDados["DsSenha"]));
 $StrSQL = "SELECT idUsuario, NmUsuario FROM tsUsuario WHERE DsEmail = '{$arrDados['DsEmail']}' and DsSenha = '{$arrDados['DsSenha']}'";
 
-$objrs = mysql_query($StrSQL);
-$objRow = mysql_fetch_array($objrs);
+$objRs = mysql_query($StrSQL);
+$objRow = mysql_fetch_array($objRs);
 
 if(strlen($objRow["idUsuario"] > 0)){
 	$_SESSION["idUsuario"] = $objRow["idUsuario"];

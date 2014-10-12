@@ -116,9 +116,7 @@
 	}//fim do inserte
 	echo "<div id='page-wrapper'>	
 			<div class='row'>
-        		<div class='col-lg-12' id='mensagem'>";
-				echo $strSQL.
-		var_dump($arrDados)
-            .$strMs."<a href='listCategoria.php'> Exibir cadastros</a>      				
-    		</div><!-- /.col-lg-12 -->";//fim mensagem para o usuário
+        		<div class='col-lg-12' id='mensagem'>"
+            		.$strMsg."<a href='listCategoria.php'> Exibir cadastros</a>      				
+    			</div>";//fim mensagem para o usuário
 	require_once("rodape.php");

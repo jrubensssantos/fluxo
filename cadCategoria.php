@@ -23,7 +23,7 @@
             		<div class="panel-body">
             			<form class="form-horizontal" name="formCadCat" id="formCadCat" action="categorias.php" method="post">
 							<div class="form-group">														
-								<div class="col-sm-8">
+								<div class="col-sm-5">
 									<label for="NmCategoria">Categoria</label>
 									<div class="input-group">
 								      	<div class="input-group-addon"><span class="fa fa-cat"></span></div>
@@ -34,7 +34,7 @@
 								</div>                   
 							</div>
 							<div class="form-group">														
-								<div class="col-sm-8">
+								<div class="col-sm-3">
 									<label for="FgStatus">Status</label><br />
 									<div class="input-group">
 										<div class="input-group-addon"></div>						      	

@@ -1,7 +1,7 @@
 <?php 
-	require_once("topo.php");
+	require_once("topo.php");	
 	$arrDados = $_REQUEST; 
-  	
+  		
 	$arrDados["acao"] = mysql_real_escape_string($arrDados["acao"]);
 	$arrDados["idUsuario"] = mysql_real_escape_string($arrDados["idUsuario"]);
 	$arrDados["NmUsuario"] = mysql_real_escape_string($arrDados["NmUsuario"]);
@@ -15,12 +15,13 @@
 					SET
 						NmUsuario = '{$arrDados['NmUsuario']}'
 						,DsEmail = '{$arrDados['DsEmail']}'
-						,DsSenha = '{$arrDados['DsSenha']}'				
+						,DsSenha = '".codificaSenha($arrDados["DsSenha"])."'				
 					WHERE
 						idUsuario = '{$arrDados['idUsuario']}' ";
 		if(mysql_query($strSQL))
 		{
 			$strMsg = 'Registro(s) atualizado(s) com sucesso! ';
+			header('location: listUsuario.php');
 		   // echo "<script language='javascript'>
 					// window.alert('Registro atualizados com sucesso!');
 					// window.location=('listUsuario.php?acao=E&idUsuario={$arrDados["idUsuario"]}');
@@ -36,6 +37,7 @@
 					// window.alert('Houve um erro no banco de dados!');
 					// window.location=('listUsuario.php?acao=E&idUsuario={$arrDados["idUsuario"]}');
 				// </script>";
+				header('location: listUsuario.php');
 		}
 	}//fim da edição do registro
 	
@@ -51,6 +53,7 @@
 		if(mysql_query($strSQL))
 		{ 
 			$strMsg = "O registro de código ".$arrDados["idUsuario"]." foi excluido com sucesso ";
+			header('location: listUsuario.php');
 		}
 		else
 		{
@@ -58,6 +61,7 @@
 			mail("jhouper@hotmail.com", "Erro Mysql"
 			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
 			, "From: jhouper@hotmail.com");
+			header('location: listUsuario.php');
 		}
 	
 	}//fim do delete
@@ -82,6 +86,7 @@
 		if(mysql_query($strSQL))
 		{ 
 			$strMsg = 'Usuário cadastrado com sucesso! ';
+			header('location: listUsuario.php');
 		}
 		else
 		{
@@ -98,16 +103,15 @@
 			mail("jhouper@hotmail.com", "Erro Mysql"
 			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
 			, "From: jhouper@hotmail.com");
+			header('location: listUsuario.php');
 	
 		}
 	}//fim do inserte
-	
-	echo "<div id='page-wrapper'>	
-			<div>
-        		<div class='col-lg-12' id='mensagem'>
-            		";
-				echo $strSQL.
-		var_dump($arrDados).$strMsg."<a href='listUsuario.php'>Exibir cadastros</a>
-        		</div>        				
-    		</div><!-- /.col-lg-12 -->";//fim mensagem para o usuário
+
+		echo "<div id='page-wrapper'>	
+					<div class='row'>
+        				<div class='col-lg-12' id='mensagem'>"
+            			.$strMsg."<a href='listUsuario.php'> Exibir cadastros</a>      				
+    				</div>";//fim mensagem para o usuário
+
 	require_once("rodape.php");

@@ -18,7 +18,7 @@
                 	<label for="fltStatus">Status</label>
 					<input type="checkbox" name="fltStatus[]" id="fltStatus[]" value="A"
 					<?php 
-						for ($i=0; $i < count($arrDados['fltStatus']); $i++) 
+						for ($i=0; $i < count($arrDados['fltStatus[]']); $i++) 
 						{ 
 							echo $arrDados['fltStatus[$i]'] == "A" ? " checked = 'checked' " : "";
 						}
@@ -26,7 +26,7 @@
 					/> Ativo
 					<input type="checkbox" name="fltStatus[]" id="fltStatus[]" value="B"
 					<?php 
-						for ($i=0; $i < count($arrDados['fltStatus']); $i++) 
+						for ($i=0; $i < count($arrDados['fltStatus[]']); $i++) 
 						{ 
 							echo $arrDados['fltStatus[$i]'] == "B" ? " checked = 'checked' " : "";
 						}
@@ -81,10 +81,10 @@
 								
 								echo "<td class='center'>
 										<a class='btn btn-info' href='cadCategoria.php?idCategoria={$objRow["idCategoria"]}' title='Editar'>
-											<i class='fa fa-pencil-square-o'></i>
+											<img src='images/edit.png' alt='Editar' />
 										</a>
 										<a class='btn btn-info' href='#' onclick='javascript: excluir({$objRow['idCategoria']});' title='Excluir'>
-											<i class='fa fa-trash-o'></i>
+											<img src='images/delete.png' alt='Excluir' />
 										</a>
 									</td>";
 							echo "</tr>";

@@ -11,34 +11,36 @@
 					FROM
 						tsUsuario
 					WHERE
-						idUsuario = '{$arrDados['idUsuario']}' "; 
+						idUsuario = '{$arrDados["idUsuario"]}' "; 
 	
 		$objRow = mysql_fetch_array(mysql_query($strSQL));
 	}
 ?>
        <div id="page-wrapper">
-            <h1>Alterar Senha</h1>
+            <h1>Cadastro de usuário</h1>
           	<div class="col-lg-12">      
         		<div class="panel panel-default">
             		<div class="panel-body">
             			<form class="form-horizontal" name="formCadUser" id="formCadUser" action="usuarios.php" method="post">
 							<div class="form-group">														
 								<div class="col-sm-8">
-								
+									<label for="NmUsuario">Nome</label>
 									<div class="input-group">
-								      
+								      	<div class="input-group-addon"><span class="fa fa-user"></span></div>
 								      	<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $arrDados["idUsuario"]; ?>" />
 								      	<input type="hidden" name="acao" id="acao" value="E" />								      	
-								      	<input type="hidden" class="form-control" name="NmUsuario" id="NmUsuario" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmUsuario']; ?>">
+								      	<input type="text" class="form-control" name="NmUsuario" id="NmUsuario" placeholder="Nome" maxlength="100" disabled="none" value="<?php echo $objRow['NmUsuario']; ?>">
+								      	<input type="hidden" class="form-control" name="NmUsuario" id="NmUsuario" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmUsuario']; ?>">
 									</div><span id="erron"></span>
 								</div>                   
 							</div>
        						<div class="form-group">					
 								<div class="col-sm-8">
-									
+									<label for="DsEmail">Email</label>
 									<div class="input-group">
-								      							      	
-								      	<input class="form-control" type="hidden" name="DsEmail" id="DsEmail" type="text" placeholder="Email" maxlength="255" value="<?php echo $objRow['DsEmail']; ?>">
+								      	<div class="input-group-addon">@</div>								      	
+								      	<input type="text" class="form-control" name="DsEmail" id="DsEmail" placeholder="Email" maxlength="255" disabled="none" value="<?php echo $objRow['DsEmail']; ?>">
+								      	<input type="hidden" class="form-control" name="DsEmail" id="DsEmail" placeholder="Email" maxlength="255" value="<?php echo $objRow['DsEmail']; ?>">
 									</div><span id="erroe"></span>										
 								</div>                   
 							</div>
@@ -72,11 +74,32 @@
 				//function validaCampo(){
 				document.getElementById("btnSalvar").onclick = function () 
 				{
-					
+					var nome = document.getElementById("NmUsuario").value;			
+					if(nome.length <= 3)
+					{ 
+						document.getElementById("erron").innerHTML="<font color='red'>O nome dever ter mais de 3 caracter</font>";
+						//window.alert("Este campo é obrigatório!");
+						return false;
+					}
+					else 
+					{
+						document.getElementById("erron").innerHTML="";
+					};
+					var email = document.getElementById("DsEmail").value;			
+					if(email.length <= 10)
+					{ 
+						document.getElementById("erroe").innerHTML="<font color='red'>Digite um email válido</font>";
+						//window.alert("Este campo é obrigatório!");
+						return false;
+					}
+					else 
+					{
+						document.getElementById("erroe").innerHTML=""; 
+					};
 					var senha = document.getElementById("DsSenha").value;			
 					if(senha.length < 4)
 					{ 
-						document.getElementById("erros").innerHTML="<span class='alert-danger'>A senha dever ter no minimo 4  e no maximo 8 caracter</span>";
+						document.getElementById("erros").innerHTML="<font color='red'>A senha dever ter no minimo 4 caracter</font>";
 						//window.alert("Este campo é obrigatório!");
 						return false;
 					}
@@ -89,7 +112,7 @@
 					var confSenha = document.getElementById("ConfSenha").value;		
 					if(confSenha != senha)
 					{ 
-						document.getElementById("errocs").innerHTML="<span class='alert-danger'>A senha digita da é diferente</span>";
+						document.getElementById("errocs").innerHTML="<font color='red'>A senha é diferente da confirmação</font>";
 						//window.alert("Este campo é obrigatório!");
 						return false;
 					}

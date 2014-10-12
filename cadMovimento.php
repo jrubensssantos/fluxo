@@ -15,16 +15,28 @@
 	if($idMovimento!=0)
 	{
 		$strSQL = "	SELECT 	
-							u.NmUsuario, c.NmCategoria, m.idMovimento, date_format(m.DtMovimento, '%d/%m/%Y') AS DtMovimento,  
-							m.FgTipo, m.DsMovimento, m.NuValor, m.FgStatus
+							m.DtMovimento
+							, m.DsMovimento
+							, m.FgTipo
+							, m.NuValor
+							, m.FgStatus
+							, m.teCategoria_idCategoria
+							, m.tsUsuario_idUsuario
 					FROM 	
-							tsUsuario AS u INNER JOIN tuMovimento As m
-					ON 		
-							u.idUsuario = m.tsUsuario_idUsuario	INNER JOIN teCategoria AS c  
-					ON 		
-							c.idCategoria = m.teCategoria_idCategoria											
+							tuMovimento AS m											
 					WHERE 
 							idMovimento = '{$arrDados["idMovimento"]}' ";
+		// $strSQL = "	SELECT 	
+							// u.NmUsuario, c.NmCategoria, m.idMovimento, m.DtMovimento,  
+							// m.FgTipo, m.DsMovimento, m.NuValor, m.FgStatus
+					// FROM 	
+							// tsUsuario AS u INNER JOIN tuMovimento As m
+					// ON 		
+							// u.idUsuario = m.tsUsuario_idUsuario	INNER JOIN teCategoria AS c  
+					// ON 		
+							// c.idCategoria = m.teCategoria_idCategoria											
+					// WHERE 
+							// idMovimento = '{$arrDados["idMovimento"]}' ";
 						
 	
 		$objRow = mysql_fetch_array(mysql_query($strSQL));
@@ -45,7 +57,7 @@
 								      	
 								      	<input type="hidden" name="idMovimento" id="idMovimento" value="<?php echo $arrDados['idMovimento']; ?>" />
 								      	<input type="hidden" name="tsUsuario_idUsuario" id="tsUsuario_idUsuario" value="<?php echo $_SESSION['idUsuario']; ?>" />
-								      	<!-- <input type="hidden" class="form-control" name="DtMovimento" id="DtMovimento" value="<?php echo $arrDados['DtMovimento']; ?>"> -->
+								      	<!-- <input type="hidden" class="form-control" name="DtMovimento" id="DtMovimento" value="<?php echo date_format(m.DtMovimento, '%d/%m/%Y'); ?>"> -->
 								      	<!-- <input type="text" name="teCategoria_idCategoria" id="teCategoria_idCategoria" value="<?php echo "idCategoria".$arrDados['idCategoria']; ?>" />	 -->							      	
 								      	
 								      	<input type="date" class="form-control" name="DtMovimento" id="DtMovimento" value="<?php echo $objRow['DtMovimento']; ?>">							      	
@@ -60,7 +72,7 @@
 										<select id="FgStatus" name="FgStatus" class="form-control">
 											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
 											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
-											</select> 
+										</select> 
 										<br />
 									</div><span id="errof"></span>
 								</div>                   
@@ -78,7 +90,7 @@
 														FROM 
 																teCategoria 
 														WHERE 
-																1=1";
+																idCategoria = {$objRow['teCategoria_idCategoria']}";
 											$objRs = mysql_query($strSQL);
 											
 								      		while ($retorna = mysql_fetch_array($objRs))
