@@ -23,10 +23,10 @@
             		<div class="panel-body">
             			<form class="form-horizontal" name="formCadCat" id="formCadCat" action="categorias.php" method="post">
 							<div class="form-group">														
-								<div class="col-sm-5">
+								<div class="col-sm-3">
 									<label for="NmCategoria">Categoria</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"><span class="fa fa-cat"></span></div>
+								      	<div class="input-group-addon"><i class="fa fa-table fa-fw"></i><span class="fa fa-cat"></span></div>
 								      	<input type="hidden" name="idCategoria" id="idCategoria" value="<?php echo $arrDados["idCategoria"]; ?>" />
 								      	<input type="hidden" name="acao" id="acao" value="E" />								      	
 								      	<input class="form-control" name="NmCategoria" id="NmCategoria" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmCategoria']; ?>">
@@ -37,8 +37,9 @@
 								<div class="col-sm-3">
 									<label for="FgStatus">Status</label><br />
 									<div class="input-group">
-										<div class="input-group-addon"></div>						      	
+										<div class="input-group-addon"><i class="fa fa-table fa-fw"></i></div>						      	
 										<select id="FgStatus" name="FgStatus" class="form-control">
+											<option>Selecione o status</option>
 											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
 											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
 											</select> 

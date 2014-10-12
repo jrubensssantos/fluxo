@@ -70,6 +70,7 @@
 									<div class="input-group">
 										<div class="input-group-addon"></div>					
 										<select id="FgStatus" name="FgStatus" class="form-control">
+											<option>Selecione o status</option>
 											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
 											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
 										</select> 
@@ -83,22 +84,24 @@
 									<div class="input-group">
 								      	<div class="input-group-addon"></div>								      	
 								      	<select id="teCategoria_idCategoria" name="teCategoria_idCategoria" class="form-control">
+								      		<option>Selecione a categoria</option>
 								      		<?php 
-								      		$strSQL = "	SELECT 	idCategoria
-																, NmCategoria
-																, FgStatus 
-														FROM 
-																teCategoria 
-														WHERE 
-																idCategoria = {$objRow['teCategoria_idCategoria']}";
-											$objRs = mysql_query($strSQL);
-											
-								      		while ($retorna = mysql_fetch_array($objRs))
-											{		
-												echo"<option value='{$retorna['idCategoria']}'>
-														{$retorna['NmCategoria']}
-													</option>";
-											}?>
+									      		$strSQL = "	SELECT 	idCategoria
+																	, NmCategoria
+																	, FgStatus 
+															FROM 
+																	teCategoria 
+															WHERE 
+																	1 = 1";
+												$objRs = mysql_query($strSQL);
+													
+									      		while ($retorna = mysql_fetch_array($objRs))
+												{		
+													echo"<option value='{$retorna['idCategoria']}'>
+															{$retorna['NmCategoria']}
+														</option>";
+												}
+											?>
 										</select>
 									</div>									
 								</div>                   
@@ -109,6 +112,7 @@
 									<div class="input-group">
 										<div class="input-group-addon"></div>
 								      	<select id="FgTipo" name="FgTipo" class="form-control">
+								      		<option>Selecione o tipo</option>
 											<option value="D" <?php echo $objRow["FgTipo"]==="D"?" selected = 'selected' ":""; ?> >Dispesa</option>
 											<option value="R" <?php echo $objRow["FgTipo"]==="R"?" selected = 'selected' ":""; ?> >Receita</option>
 											</select> 
