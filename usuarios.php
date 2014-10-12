@@ -20,8 +20,7 @@
 						idUsuario = '{$arrDados['idUsuario']}' ";
 		if(mysql_query($strSQL))
 		{
-			$strMsg = 'Registro(s) atualizado(s) com sucesso! ';
-			header('location: listUsuario.php');
+			$strMsg = 'Dados do usuário atualizado com sucesso! ';
 		   // echo "<script language='javascript'>
 					// window.alert('Registro atualizados com sucesso!');
 					// window.location=('listUsuario.php?acao=E&idUsuario={$arrDados["idUsuario"]}');
@@ -37,7 +36,6 @@
 					// window.alert('Houve um erro no banco de dados!');
 					// window.location=('listUsuario.php?acao=E&idUsuario={$arrDados["idUsuario"]}');
 				// </script>";
-				header('location: listUsuario.php');
 		}
 	}//fim da edição do registro
 	
@@ -52,8 +50,7 @@
 	
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "O registro de código ".$arrDados["idUsuario"]." foi excluido com sucesso ";
-			header('location: listUsuario.php');
+			$strMsg = "O usuário ".$arrDados["NmCategoria"]." foi excluido com sucesso ";
 		}
 		else
 		{
@@ -61,7 +58,6 @@
 			mail("jhouper@hotmail.com", "Erro Mysql"
 			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
 			, "From: jhouper@hotmail.com");
-			header('location: listUsuario.php');
 		}
 	
 	}//fim do delete
@@ -85,8 +81,7 @@
 							('".$arrDados["NmUsuario"]."', '".$arrDados["DsEmail"]."', '".codificaSenha($arrDados["DsSenha"])."')";
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = 'Usuário cadastrado com sucesso! ';
-			header('location: listUsuario.php');
+			$strMsg = 'Dados do usuário cadastrado com sucesso! ';
 		}
 		else
 		{
@@ -103,7 +98,6 @@
 			mail("jhouper@hotmail.com", "Erro Mysql"
 			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
 			, "From: jhouper@hotmail.com");
-			header('location: listUsuario.php');
 	
 		}
 	}//fim do inserte

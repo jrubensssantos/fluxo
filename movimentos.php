@@ -30,11 +30,7 @@
 					";
 		if(mysql_query($strSQL))
 		{
-			$strMsg = 'Registro(s) atualizado(s) com sucesso! ';
-		   // echo "<script language='javascript'>
-					// window.alert('Registro atualizados com sucesso!');
-					// window.location=('listMovimento.php?acao=E&idMovimento={$arrDados["idMovimento"]}');
-				// </script>";
+			$strMsg = 'Registro atualizado com sucesso! ';
 		}
 		else
 		{
@@ -42,10 +38,6 @@
 			mail("jhouper@hotmail.com", "Erro Mysql"
 			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
 			, "From: jhouper@hotmail.com");
-			// echo "<script language='javascript'>
-					// window.alert('Houve um erro no banco de dados!');
-					// window.location=('listMovimento.php?acao=E&idMovimento={$arrDados["idMovimento"]}');
-				// </script>";
 		}
 	}//fim da edição do registro
 	
@@ -75,13 +67,13 @@
 	}//fim do delete
     else
 	{
-		/*if(strlen($arrDados["NmUsuario"]) <= 3)
+		if(strlen($arrDados["NmUsuario"]) <= 3)
 		{
 			
 			header("Location: cadUsuario.php");
 			$strMsg = "O campo categoria tem que ter mais de 3 caracteres";
 			exit();
-		}*/
+		}
 
 		$arrDados["idMovimento"] = mysql_real_escape_string($arrDados["idMovimento"]);
 		$arrDados["FgTipo"] = mysql_real_escape_string($arrDados["FgTipo"]);

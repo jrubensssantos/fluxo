@@ -20,7 +20,7 @@
 					";
 		if(mysql_query($strSQL))
 		{
-		   $strMsg = 'Registro(s) atualizado(s) com sucesso! ';
+		   $strMsg = 'Categoria atualizado com sucesso! ';
 		   		// <script language='javascript'>
 					// window.alert('Registro atualizados com sucesso!');
 					// window.location=('cadCategoria.php?acao=idCategoria={$arrDados["idCategoria"]}');
@@ -51,7 +51,7 @@
 	
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "O registro de código ".$arrDados["idCategoria"]." foi excluido com sucesso. ";
+			$strMsg = "A categoria ".$arrDados["NmCategoria"]." foi excluida com sucesso. ";
 		}
 		else
 		{
