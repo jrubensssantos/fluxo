@@ -30,6 +30,7 @@
 		            </div>
 		            <div class="form-group">
 		              <button class="btn btn-primary btn-lg btn-block" id="entrar">Enviar</button>
+		              <a href="index.php" <button class="btn btn-primary btn-lg btn-block" id="btnEnviar">Voltar para login</button></a>
 		          </form>
 	          	<script language="javascript">
 					var valida = document.getElementById("entrar").onclick =

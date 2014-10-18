@@ -31,67 +31,20 @@ if($objRow["DsEmail"] === $arrDados["DsEmail"])
 		          <h1 class="text-center"><img src="images/logo.png" width="250" alt="logo"/></h1>
 		      </div>
 		      <div class="modal-body">
-		          <form class="form col-md-12 center-block" method="post" id="formRecSenha" name="formRecSenha" action="recuperaSenhaAcao.php">
-		          		<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $objRow["idUsuario"]; ?>" />
-		          		<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $objRow["DsEmail"]; ?>" />
-		          		<input type="hidden" name="idUsuario" id="idUsuario" value="<?php echo $objRow["NmUsuario"]; ?>" />
-		          		<div class="form-group" id="mensagem">
-							<?php	
-								echo "Ola, ".$objRow['NmUsuario']." digite sua nova senha!";
-							?>
-				      	</div>
+	          <form class="form col-md-12 center-block" method="post" id="formRecSenha" name="formRecSenha" action="recuperaSenhaAcao.php">
+          			<div class="form-group" id="mensagem">
+						<?php	
+							echo "Ola, ".$objRow['NmUsuario']." foi enviado um email com um link para o seu email com sua nova senha!";
+						?>
+			      	</div>
 		            <div class="form-group">
-		            	<label for="DsSenha">Senha</label>
-		              	<input type="password" class="form-control input-lg" placeholder="Digite a nova senha" autofocus="autofocus" id="DsSenha" name="DsSenha" required>
-		            </div><span id="erros"></span>
-		            <div class="form-group">
-		            	<label for="ConfSenha">Confirma a senha</label>
-		              	<input type="password" id="ConfSenha" name="ConfSenha" class="form-control input-lg" maxlength="8" placeholder="Digite a confirmação" required>
-		            </div><span id="errocs"></span>
-		            <div class="form-group">
-		              <button class="btn btn-primary btn-lg btn-block" id="btnEnviar">Enviar</button>
+		              <a href="index.php" <button class="btn btn-primary btn-lg btn-block" id="btnEnviar">Voltar para login</button></a>
 		            </div>
-		          </form>
-	          	<script language="javascript">
-	          	//function validaCampo(){
-				document.getElementById("btnEnviar").onclick = function () 
-				{
-					var senha = document.getElementById("DsSenha").value;			
-					if(senha.length < 4)
-					{ 
-						document.getElementById("erros").innerHTML="<font color='red'>A senha dever ter no minimo 4 caracter</font>";
-						//window.alert("Este campo é obrigatório!");
-						return false;
-					}
-					else 
-					{
-						document.getElementById("erros").innerHTML="";
-						
-					};
-					var senha = document.getElementById("DsSenha").value;
-					var confSenha = document.getElementById("ConfSenha").value;		
-					if(confSenha != senha)
-					{ 
-						document.getElementById("errocs").innerHTML="<font color='red'>A senha é diferente da confirmação</font>";
-						//window.alert("Este campo é obrigatório!");
-						return false;
-					}
-					else 
-					{
-						document.getElementById("errocs").innerHTML="";
-						
-					};
-					document.getElementById("formRecSenha").submit();   
-				};
-				//};
-			</script>
-		      </div>
+	          </form>
+	          </div>
 		      <div class="modal-footer">
 						
-		      </div>
-		  </div>
-		  </div>
-		</div>
+		      </div>	
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
@@ -101,5 +54,5 @@ if($objRow["DsEmail"] === $arrDados["DsEmail"])
 else
 {
 	//header("location:index.php");
-	echo "Este email não esta cadastrado no sistema!, <a href='recuperaSenha.php'>digite o email novamente!</a>";
+	echo "Este email não esta cadastrado no sistema!<a href='recuperaSenha.php'>digite o email novamente!</a>";
 }

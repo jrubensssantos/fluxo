@@ -51,7 +51,7 @@
 	
 		if(mysql_query($strSQL))
 		{ 
-			$strMsg = "A categoria ".$arrDados["NmCategoria"]." foi excluida com sucesso. ";
+			$strMsg = "O código ".$arrDados["idCategoria"]." foi excluida com sucesso. ";
 		}
 		else
 		{

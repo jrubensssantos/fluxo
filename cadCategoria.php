@@ -26,7 +26,7 @@
 								<div class="col-sm-3">
 									<label for="NmCategoria">Categoria</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"><i class="fa fa-table fa-fw"></i><span class="fa fa-cat"></span></div>
+								      	<div class="input-group-addon"><i class="fa fa-table fa-fw"></i></div>
 								      	<input type="hidden" name="idCategoria" id="idCategoria" value="<?php echo $arrDados["idCategoria"]; ?>" />
 								      	<input type="hidden" name="acao" id="acao" value="E" />								      	
 								      	<input class="form-control" name="NmCategoria" id="NmCategoria" type="text" placeholder="Nome" maxlength="100" value="<?php echo $objRow['NmCategoria']; ?>">
@@ -37,7 +37,7 @@
 								<div class="col-sm-3">
 									<label for="FgStatus">Status</label><br />
 									<div class="input-group">
-										<div class="input-group-addon"><i class="fa fa-table fa-fw"></i></div>						      	
+										<div class="input-group-addon"><i class="fa fa-flag-checkered"></i></div>						      	
 										<select id="FgStatus" name="FgStatus" class="form-control">
 											<option>Selecione o status</option>
 											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>

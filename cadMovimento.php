@@ -52,7 +52,7 @@
 								<div class="col-sm-3">
 									<label for="DtMovimento">Data de cadastro</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"></div>
+								      	<div class="input-group-addon"><i class="fa fa-calendar"></i></div>
 								      	<input type="hidden" name="acao" id="acao" value="E" />
 								      	
 								      	<input type="hidden" name="idMovimento" id="idMovimento" value="<?php echo $arrDados['idMovimento']; ?>" />
@@ -63,68 +63,43 @@
 								      	<input type="date" class="form-control" name="DtMovimento" id="DtMovimento" value="<?php echo $objRow['DtMovimento']; ?>">							      	
 									</div><span id="erro"></span>
 								</div>                   
-							</div>
-							<div class="form-group">														
-								<div class="col-sm-4">
-									<label for="FgStatus">Status</label><br />
-									<div class="input-group">
-										<div class="input-group-addon"></div>					
-										<select id="FgStatus" name="FgStatus" class="form-control">
-											<option>Selecione o status</option>
-											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
-											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
-										</select> 
-										<br />
-									</div><span id="errof"></span>
-								</div>                   
-							</div>							
+							</div>														
        						<div class="form-group">					
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<label for="DsEmail">Categoria</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"></div>								      	
+								      	<div class="input-group-addon"><i class="fa fa-bullseye"></i></div>								      	
 								      	<select id="teCategoria_idCategoria" name="teCategoria_idCategoria" class="form-control">
 								      		<option>Selecione a categoria</option>
+								      			
 								      		<?php 
-									      		$strSQL = "	SELECT 	idCategoria
-																	, NmCategoria
-																	, FgStatus 
-															FROM 
-																	teCategoria 
-															WHERE 
-																	1 = 1";
+									      		$strSQL = 	"	
+									      						SELECT 	
+									      							idCategoria
+																	, NmCategoria												
+																FROM 
+																	teCategoria
+															";
 												$objRs = mysql_query($strSQL);
 													
 									      		while ($retorna = mysql_fetch_array($objRs))
-												{		
-													echo"<option value='{$retorna['idCategoria']}'>
-															{$retorna['NmCategoria']}
-														</option>";
+												{
+													echo "<option ";
+													echo ($retorna["idCategoria"] === $objRow["teCategoria_idCategoria"])? 
+													" selected = 'selected ' ":"";
+													echo " value='{$retorna['idCategoria']}'>{$retorna['NmCategoria']}";
+													echo "</option>";													
 												}
 											?>
 										</select>
 									</div>									
 								</div>                   
-							</div>						
-							<div class="form-group">
-								<div class="col-sm-4">
-									<label for="FgTipo">Tipo</label>
-									<div class="input-group">
-										<div class="input-group-addon"></div>
-								      	<select id="FgTipo" name="FgTipo" class="form-control">
-								      		<option>Selecione o tipo</option>
-											<option value="D" <?php echo $objRow["FgTipo"]==="D"?" selected = 'selected' ":""; ?> >Dispesa</option>
-											<option value="R" <?php echo $objRow["FgTipo"]==="R"?" selected = 'selected' ":""; ?> >Receita</option>
-											</select> 
-										<br />	
-									</div><span id="errof"></span>
-								</div>                   
-							</div>
+							</div>							
 							<div class="form-group">
 								<div class="col-sm-4">
 									<label for="DsMovimento">Descrição do movimento</label>
 									<div class="input-group">
-								      	<div class="input-group-addon"></div>	      	
+								      	<div class="input-group-addon"><i class="fa fa-edit"></i></div>	      	
 								      	<input type="text" class="form-control" name="DsMovimento" id="DsMovimento" placeholder="Descrição do movimento" maxlength="255" value="<?php echo $objRow['DsMovimento']; ?>" />
 									</div>
 								</div> 
@@ -137,6 +112,34 @@
 								      	<input class="form-control" name="NuValor" id="NuValor" type="text" placeholder="Valor" maxlength="10" value="<?php echo $objRow['NuValor']; ?>">
 									</div>
 								</div> 
+							</div>
+							<div class="form-group">
+								<div class="col-sm-3">
+									<label for="FgTipo">Tipo</label>
+									<div class="input-group">
+										<div class="input-group-addon"><i class="fa fa-flag-checkered"></i></div>
+								      	<select id="FgTipo" name="FgTipo" class="form-control">
+								      		<option>Selecione o tipo</option>
+											<option value="D" <?php echo $objRow["FgTipo"]==="D" ? "selected = 'selected'" : ""; ?> >Dispesa</option>
+											<option value="R" <?php echo $objRow["FgTipo"]==="R" ? "selected = 'selected'" : ""; ?> >Receita</option>
+											</select> 
+										<br />	
+									</div><span id="errof"></span>
+								</div>                   
+							</div>
+							<div class="form-group">														
+								<div class="col-sm-3">
+									<label for="FgStatus">Status</label><br />
+									<div class="input-group">
+										<div class="input-group-addon"><i class="fa fa-flag-checkered"></i></div>					
+										<select id="FgStatus" name="FgStatus" class="form-control">
+											<option>Selecione o status</option>
+											<option value="A" <?php echo $objRow["FgStatus"]==="A"?" selected = 'selected' ":""; ?> >Ativo</option>
+											<option value="B" <?php echo $objRow["FgStatus"]==="B"?" selected = 'selected' ":""; ?> >Bloqueado</option>
+										</select> 
+										<br />
+									</div><span id="errof"></span>
+								</div>                   
 							</div>				           
 			  			</form>
 					</div>

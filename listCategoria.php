@@ -99,14 +99,18 @@
 							</div>  
 						</div>
 					</div>
-				<script language='javascript'>
-					function excluir(pid)
-					{
-						if(window.confirm("Deseja realmente excluir o registro " + pid + " ?"))
-						{	
-							window.location=('categoriaAcao.php?idCategoria=' + pid + '&acao=E');
-						}
-					}
-				</script>  
+					<script language="javascript">
+						function excluir(pstrId)
+						{
+							if(!window.confirm("Deseja realmente excluir o registo  " + pstrId + "?"))
+							{
+								return false; 
+							}
+							else
+							{
+								window.location="categorias.php?idCategoria=" + pstrId + "&acao=D";
+							};
+						};
+					</script>
 				<?php 
 				require_once("rodape.php");
