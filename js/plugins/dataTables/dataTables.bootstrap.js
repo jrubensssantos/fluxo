@@ -107,7 +107,7 @@ if ($.fn.dataTable.Api) {
             $(host).empty().html('<ul class="pagination"/>').children('ul'),
             buttons
         );
-    }
+    };
 } else {
     // Integration for 1.9-
     $.fn.dataTable.defaults.sPaginationType = 'bootstrap';

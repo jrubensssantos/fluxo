@@ -23,12 +23,12 @@
 			        <table class="table table-striped table-bordered table-hover">
 			            <thead>
 			                <tr>
-			                	<th>Data de cadastro</th>
-			                	<th>Status</th>
-			                    <th>Categoria</th>
-			                    <th>Tipo</th>
+			                	<th>Data de cadastro</th>			                	
+			                    <th>Categoria</th>			                    
 			                    <th>Descrição</th>
 			                    <th>Valor</th>
+			                    <th>Tipo</th>
+			                    <th>Status</th>
 			                    <th>Ação</th>
 			                </tr>
 			            </thead>                    
@@ -55,16 +55,16 @@
 						{	
 						
 							echo "<tr>";							
-							echo "<td> {$objRow['DtMovimento']} </td>";
-							echo "<td>";
-								echo($objRow[FgStatus] === 'A' ? 'Ativo': 'Bloqueado');
-							echo "</td>";
-							echo "<td> {$objRow['NmCategoria']} </td>";
+							echo "<td> {$objRow['DtMovimento']} </td>";							
+							echo "<td> {$objRow['NmCategoria']} </td>";							
+							echo "<td> {$objRow['DsMovimento']} </td>";
+							echo "<td> {$objRow['NuValor']} </td>";
 							echo "<td>";
 								echo($objRow[FgTipo] === 'D' ? 'Despesa': 'Receita');
 							echo "</td>";
-							echo "<td> {$objRow['DsMovimento']} </td>";
-							echo "<td> {$objRow['NuValor']} </td>";
+							echo "<td>";
+								echo($objRow[FgStatus] === 'A' ? 'Ativo': 'Bloqueado');
+							echo "</td>";
 							echo "<td class='center'>
 									<a class='btn btn-info' href='cadMovimento.php?idMovimento={$objRow["idMovimento"]}' title='Editar'>
 										<img src='images/edit.png' alt='Editar' />

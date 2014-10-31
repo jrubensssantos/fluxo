@@ -33,8 +33,8 @@
 		              <a href="index.php" <button class="btn btn-primary btn-lg btn-block" id="btnEnviar">Voltar para login</button></a>
 		          </form>
 	          	<script language="javascript">
-					var valida = document.getElementById("entrar").onclick =
-					function ()   {
+					var valida = document.getElementById("entrar").onclick = function ()   
+					{
 						var dsemail = document.getElementById("DsEmail").value;
 						if ((dsemail.length < 3) && (dssenha.length < 8))
 						{
@@ -48,7 +48,7 @@
 						else
 						{
 							document.getElementById("form").submit();
-						}
+						};
 					};
 				</script>
 		      </div>

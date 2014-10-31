@@ -53,7 +53,7 @@
                     <a href="listCategoria.php"><i class="fa fa-table fa-fw"></i>Categoria</a>
                 </li>
                 <li>
-                    <a href="listMovimento.php"><i class="fa fa-edit fa-fw"></i>Movimetos</a>
+                    <a href="listMovimento.php"><i class="fa fa-edit fa-fw"></i>Movimentos</a>
                 </li>
             </ul>
         </div><!-- /.sidebar-collapse -->

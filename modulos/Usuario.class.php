@@ -12,12 +12,12 @@
 		private $FgAdmin;
 		private $FgStatus;
 		
-		public function setCategoria($propriedade, $valor)
+		public function setUsuario($propriedade, $valor)
 		{
 			$this -> $propriedade = $valor;
 		}
 		
-		public function getCategoria($valor)
+		public function getUsuario($valor)
 		{
 			return $this -> $valor;
 		}

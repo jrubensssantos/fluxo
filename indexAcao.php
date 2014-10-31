@@ -1,4 +1,5 @@
 ﻿<?php session_start();
+require_once 'head.php';
 $arrDados = $_POST;
 require_once("conexao.php");
 $arrDados['DsEmail'] = mysql_real_escape_string($arrDados["DsEmail"]);
@@ -15,7 +16,14 @@ if(strlen($objRow["idUsuario"] > 0)){
 	mysql_close();
 	header("location:listMovimento.php");
 	exit();
-} else {
-	//header("location:index.php");
-	echo "Login e senha inválidos, <a href='index.php'>tente novamente!</a>";
+} 
+else 
+{	
+	echo "<div>
+			<div class='col-lg-4'>
+				<div class='alert alert-warning'>        				
+					Login e senha inválidos, <a href='index.php'>tente novamente!</a>
+        		</div>
+        	</div>	    				
+		</div>";//fim mensagem para o usuário   				
 }

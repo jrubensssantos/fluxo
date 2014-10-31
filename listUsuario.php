@@ -41,7 +41,7 @@
 							echo "<td> {$objRow['NmUsuario']} </td>";
 							echo "<td> {$objRow['DsEmail']} </td>";
 							echo "<td class='center'>
-								<a class='btn btn-info' href='cadUsuario.php?idUsuario={$objRow["idUsuario"]}' title='Editar'>
+								<a class='btn btn-info' href='editUsuario.php?idUsuario={$objRow["idUsuario"]}' title='Editar'>
 									<img src='images/edit.png' alt='Editar' />
 								</a>
 								<a class='btn btn-info' href='mudaSenha.php?idUsuario={$objRow["idUsuario"]}' title='Mudar senha'>

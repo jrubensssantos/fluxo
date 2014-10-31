@@ -1,6 +1,8 @@
 <?php 
 	require_once("topo.php");
-	$arrDados = $_REQUEST; 
+	$arrDados = $_REQUEST;
+	
+	 
 	
 	$arrDados["acao"] = mysql_real_escape_string($arrDados["acao"]);
   	$arrDados["idCategoria"] = mysql_real_escape_string($arrDados["idCategoria"]);
@@ -55,10 +57,20 @@
 		}
 		else
 		{
-			$strMsg = "Erro na query ".mysql_error()." O administrador foi avisado. ";
-			mail("jhouper@hotmail.com", "Erro Mysql"
-			, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
-			, "From: jhouper@hotmail.com");
+			if (condition) 
+			{
+				$strMsg = "A categoria nao pode ser excluida porque está em uso!";
+			} 
+			else 
+			{
+				$strMsg = "Erro na query ".mysql_error()." O administrador foi avisado. ";
+				mail("jhouper@hotmail.com", "Erro Mysql"
+				, "Erro : ".mysql_error()."===>".date("d/m/Y H:i:s")
+				, "From: jhouper@hotmail.com");
+			}
+			
+			
+			
 		}
 	
 	}//fim do delete

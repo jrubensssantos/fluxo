@@ -1130,7 +1130,7 @@ $(function() {
 
         var res = [];
         for (var i = 0; i < data.length; ++i) {
-            res.push([i, data[i]])
+            res.push([i, data[i]]);
         }
 
         return res;
